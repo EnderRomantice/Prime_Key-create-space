@@ -73,6 +73,7 @@ export default function ArticleItem() {
   }, []);
 
   if (isLoading) {
+    // 加载中
     return (
       <div className="flex justify-center items-center min-h-screen">
         <p className="text-2xl font-bold text-gray-600">Loading...</p>
