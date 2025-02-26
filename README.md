@@ -10,6 +10,7 @@
 
 ##### 安装Node.js依赖
 `cd frontend`
+
 `pnpm install`
 
 #### 技术选型
