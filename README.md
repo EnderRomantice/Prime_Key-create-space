@@ -13,6 +13,23 @@
 
 `pnpm install`
 
+#### 安装Python依赖
+
+`cd backend`
+
+创建虚拟环境
+
+`python -m venv blog` (可以在.gitignore中更改排除文件)
+
+激活虚拟环境
+
+`blog\Scripts\activate`
+
+安装依赖
+
+`pip install -r requirements.txt`
+
+
 #### 技术选型
 
 ##### 前端
