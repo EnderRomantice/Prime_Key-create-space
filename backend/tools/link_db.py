@@ -1,7 +1,10 @@
 import sqlite3
-# python已内置sqlite3的驱动
+import os
+
+URL = os.getcwd()
+
 def get_db_connection():
-    conn = sqlite3.connect('C:\\projects\\Prime_Key-create-space\\backend\\database.db')
+    conn = sqlite3.connect(f'{URL}\\database.db')
     conn.row_factory = sqlite3.Row
 
     return conn

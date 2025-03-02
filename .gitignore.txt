@@ -1,1 +1,3 @@
 node_modules/
+blog/
+__pycache__/
