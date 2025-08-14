@@ -5,53 +5,23 @@ import resMethod from "../tools/resMethod.ts";
 
 export default function Master() {
 
-  //等待响应时数据
-  const [MasterData, setMasterData] = useState({
-      "title": "Loading...",
-      "readme": "Loading...",
-      "tips": "Loading...",      
-      "artCount": "Loading...",
-      "objectCount":"Loading...",
-      "grow": {
-        "read": "Loading...",
-        "comment": "Loading...",
-        "day": "Loading..."
-      },
-      "latestUpdates": [
-        {
-          "id": "Loading...",
-          "title": "Loading...",
-          "excerpt": "Loading...",
-          "tag": "Loading...",
-          "date": "Loading...",
-          "readTime": "Loading...",
-          "views": "Loading..."
-      }
-      ]
-  
-  });
+  const [masterData, setMasterData] = useState({
+    tips: "野钓记",
+    articleCount: 3,
+    projectCount: 1,
+    readCount: 0,
+    lifeCount: 0,
+    serverRunTime: 0,
+  })
 
-  //副作用：获取数据
-  useEffect(() => {
-    resMethod('/master', 'GET')
-    .then(
-      data => 
-        setMasterData(data)
-    )
-    // fetch('http://127.0.0.1:8500/master')
-    // .then(
-    //     res => res.json()
-    //     .then(data => {
-    //       setMasterData(data)
-    //       console.log(data)
-    //     })
-    // )
-  }, [])
+
+
+
 
 
   return (
   
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 scrollbar-hidden overflow-y-auto">
 
       {/* 主内容容器 */}
       <main className="max-w-6xl mx-auto px-4 py-12">
@@ -59,14 +29,14 @@ export default function Master() {
         {/* 头部区域 */}
         <header className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl p-8 mb-12 border border-gray-200/80">
           <h1 className="text-4xl font-bold text-gray-800 mb-4 animate-fade-in-up">
-            {MasterData.title}
+            Hello, 我是PK.
             <span className="text-amber-600 ml-2">✨</span>
           </h1>
           <p className="text-gray-800 text-xl py-4 font-bold">
-            {MasterData.readme} 😽
+            Welcome to my blog 😽
           </p>
           <p className="text-gray-400 text-lg leading-relaxed italic">
-            每日Tips 🎻: <br/>{MasterData.tips}
+            每日Tips 🎻: {masterData.tips}<br/>
           </p>
         </header>
 
@@ -86,7 +56,7 @@ export default function Master() {
             </div>
             <p className="text-gray-600 mb-4">探索最新技术实践与深度解析</p>
             <div className="flex justify-between items-center text-sm text-gray-500">
-              <span>📚 已更新 {MasterData.artCount} 篇</span>
+              <span>📚 已更新 {masterData.articleCount} 篇</span>
               <button className="px-4 py-2 bg-amber-50 text-amber-600 rounded-lg hover:bg-amber-100 transition-colors">
               <Link to={"/articles"}>查看全部 →</Link>
               </button>
@@ -110,7 +80,7 @@ export default function Master() {
               <div className="h-full bg-purple-500 transition-all duration-1000" style={{ width: '75%' }} />
             </div>
             <div className="flex justify-between items-center text-sm text-gray-500">
-              <span>🚀 进行中项目 {MasterData.objectCount} 个</span>
+              <span>🚀 进行中项目 {masterData.projectCount} 个</span>
               <button className="px-4 py-2 bg-purple-50 text-purple-600 rounded-lg hover:bg-purple-100 transition-colors">
                 <Link to={"/projects"}>探索项目 →</Link>
               </button>
@@ -131,15 +101,15 @@ export default function Master() {
             </div>
             <div className="grid grid-cols-3 gap-4 text-center mb-4">
               <div className="p-4 bg-gray-50 rounded-xl hover:bg-white transition-colors">
-                <div className="text-2xl font-bold text-amber-600">{MasterData.grow.read}</div>
+                <div className="text-2xl font-bold text-amber-600">{masterData.readCount}</div>
                 <div className="text-sm text-gray-500">累计阅读</div>
               </div>
               <div className="p-4 bg-gray-50 rounded-xl hover:bg-white transition-colors">
-                <div className="text-2xl font-bold text-purple-600">{MasterData.grow.comment}</div>
-                <div className="text-sm text-gray-500">互动评论</div>
+                <div className="text-2xl font-bold text-purple-600">{masterData.lifeCount}</div>
+                <div className="text-sm text-gray-500">生活动态</div>
               </div>
               <div className="p-4 bg-gray-50 rounded-xl hover:bg-white transition-colors">
-                <div className="text-2xl font-bold text-emerald-600">{MasterData.grow.day}</div>
+                <div className="text-2xl font-bold text-emerald-600">{masterData.serverRunTime}</div>
                 <div className="text-sm text-gray-500">持续天数</div>
               </div>
             </div>
@@ -165,7 +135,7 @@ export default function Master() {
 
           {/* 动态列表 */}
           <div className="space-y-6">
-        {MasterData.latestUpdates.map((update: any) => (
+        {/* {MasterData.latestUpdates.map((update: any) => (
           <div 
             key={update.id}
             className="group p-6 rounded-xl border border-gray-200/80 hover:border-amber-200 transition-all duration-300 hover:shadow-lg"
@@ -179,14 +149,13 @@ export default function Master() {
                   {update.content}
                 </p>
                 <div className="flex items-center mt-4 space-x-4 text-sm text-gray-500">
-                  <span>📅 {update.date}</span>
-                  <span>🕒 已阅读{update.readTime}分钟</span>
-                  <span>🏷 {update.tag}</span>
+                  <span>📅 </span>
+                  <span>🏷 </span>
                 </div>
               </div>
             </div>
           </div>
-        ))}
+        ))} */}
       </div>
         </section>
       </main>

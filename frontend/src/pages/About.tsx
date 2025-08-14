@@ -8,28 +8,13 @@ import PixelTransition from "../computed/reactbits/PixelTransition";
 import { GithubIcon, GmailIcon, WeChatIcon, QQIcon, GiteeIcon } from "../computed/Icons";
 
 export default function About() {
-  interface nowImg {
-    name: string;
-    url: string;
-  }
-
-  const [nowImg, setNowImg] = useState<nowImg[]>([
-    {
-      name: "test",
-      url: "https://cdn2.thecatapi.com/images/ci7.jpg",
-    },
-    {
-      name: "test2",
-      url: "https://cdn2.thecatapi.com/images/dnYQq6Vf3.jpg",
-    },
-  ]);
 
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
   });
 
-  const [imgUrl, setImgUrl] = useState("../assets/header.jpg");
+  const [imgUrl, setImgUrl] = useState("https://foruda.gitee.com/avatar/1735578534702305405/15325054_rustlove_1735578534.png!avatar100");
 
   // useEffect(() => {        
   //   fetch("https://api.thecatapi.com/v1/images/search")
@@ -92,7 +77,7 @@ export default function About() {
                       color: "#ffffff",
                     }}
                   >
-                    小猫?
+                    Hum?
                   </p>
                 </div>
               }
@@ -119,10 +104,10 @@ export default function About() {
               variants={itemVariants}
             >
               <span className="bg-gradient-to-r from-amber-600 to-amber-400 bg-clip-text text-transparent">
-                Prime_Key
+                PK
               </span>
                 <span className="xl:visible invisible mx-4 text-gray-300">|</span>
-                <span className="xl:visible invisible text-gray-600">Rust_Love</span>
+                <span claKssName="xl:visible invisible text-gray-600">数字游民</span>
 
             </motion.h1>
 

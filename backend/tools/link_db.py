@@ -1,10 +1,10 @@
-import sqlite3
+import aiosqlite
 import os
 
 URL = os.getcwd()
 
-def get_db_connection():
-    conn = sqlite3.connect(f'{URL}\\database.db')
-    conn.row_factory = sqlite3.Row
+async def get_db_connection():
+    conn = await aiosqlite.connect(f'{URL}\\database.db')
+    conn.row_factory = aiosqlite.Row
 
     return conn

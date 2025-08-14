@@ -25,9 +25,12 @@ export default function Life() {
     ])
 
     useEffect(() => {
-        resMethod('/life', 'GET')
+        resMethod('/life/list', 'GET')
         .then(
             res => setLifeItems(res)
+        )
+        .catch(
+            err => console.log(err)
         )
     }, [])
 

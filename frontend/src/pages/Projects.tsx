@@ -17,11 +17,21 @@ export default function Projects() {
     }
   ]);
 
-  useEffect(()=>{
-    resMethod('/projects', 'GET')
-    .then(
-      res => setProjects(res)
-    )
+useEffect(() => {
+  resMethod('/projects', 'GET')
+    .then(res => {
+      const formattedProjects = res.map(project => ({
+        ...project,
+        tech: typeof project.tech === 'string'
+          ? project.tech.split(',').map(tag => tag.trim()).filter(Boolean) // filter(Boolean) 防止空标签
+          : project.tech
+      }));
+      setProjects(formattedProjects);
+    })
+    .catch(err => {
+      console.error("请求项目数据失败:", err);
+    });
+}, []);
     // fetch('http://127.0.0.1:8500/projects')
     //   .then(
     //     res => res.json()
@@ -29,7 +39,7 @@ export default function Projects() {
     //   .then(
     //     data => setProjects(data)
     //   )
-  },[])
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
