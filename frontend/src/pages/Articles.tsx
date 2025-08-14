@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import resMethod from "../tools/resMethod";
 
 export default function Articles() {
-  const [pages, setPages] = useState(1)  // 模拟文章数据
+  const [pages, setPages] = useState(1) 
 
   const pagesAdd = () => {
     articles.length > 1 ? setPages(pages + 1) : undefined

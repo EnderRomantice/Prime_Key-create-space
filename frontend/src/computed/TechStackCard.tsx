@@ -11,14 +11,14 @@ export default function TechStackCard() {
     }
 
     const technologies: Technology[] = [
-      { name: "React.js", level: 71, category: 'frontend' },
-      { name: "Vue.js", level: 61, category: 'frontend' },
-      { name: "TypeScript", level: 60, category: 'frontend' },
-      { name: "Tailwind CSS", level: 60, category: 'styling' },
-      { name: "Node.js", level: 71, category: 'backend' },
-      { name: "Python", level: 72, category: 'backend' },
-      { name: "FastAPI", level: 60, category: 'backend' },
-      { name: "SQLite", level: 70, category: 'database' },
+      { name: "React.js", level: 41, category: 'frontend' },
+      { name: "Vue.js", level: 30, category: 'frontend' },
+      { name: "TypeScript", level: 50, category: 'frontend' },
+      { name: "Tailwind CSS", level: 40, category: 'styling' },
+      { name: "Node.js", level: 50, category: 'backend' },
+      { name: "Rust", level: 10, category: 'backend' },
+      { name: "FastAPI", level: 50, category: 'backend' },
+      { name: "SQL", level: 50, category: 'database' },
       { name: "Vite", level: 30, category: 'build' },
     ];
   
@@ -35,10 +35,8 @@ export default function TechStackCard() {
   
     return (
       <motion.div 
-        className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/80 shadow-lg"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
+        className="bg-white/95 backdrop-blur-sm rounded-[2rem] p-8 border border-gray-200/80 shadow-sm transition hover:shadow-xl xl:w-1/3 my-8 xl:my-0"
+        
       >
         <h3 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
           <svg 

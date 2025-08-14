@@ -1,17 +1,18 @@
-import { BrowserRouter as Router, Routes, Route, useLocation, } from "react-router-dom";
-import { useState,  useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState} from "react";
 import Tabbar from "./computed/Tabbar.tsx";
-import Master from "./computed/Master.tsx";
-import Articles from "./computed/Articles.tsx";
+import Master from "./pages/Master.tsx";
+import Articles from "./pages/Articles.tsx";
 import ArticleItem from "./computed/ArticleItem.tsx";
-import Projects from "./computed/Projects.tsx";
-import About from "./computed/About.tsx";
+import Projects from "./pages/Projects.tsx";
+import About from "./pages/About.tsx";
 import Aurora from "./computed/reactbits/Aurora.tsx";
+import Life from "./pages/Life.tsx";
 import "./output.css";
 
 export default function App() {
 
-  const [backColor, setBackColor] = useState(
+  const [backColor] = useState<string[]>(
     ["#BBFFFF", "#7FFFD4", "#00FFFF"]
  )
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="*" element={<Master />} />
           <Route path="/" element={<Master />} />
           <Route path="/articles" element={<Articles />} />
+          <Route path="/life" element={<Life />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/about" element={<About />} />
           <Route path="/articles/:id" element={<ArticleItem />} />

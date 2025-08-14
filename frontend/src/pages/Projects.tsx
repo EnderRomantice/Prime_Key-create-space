@@ -37,46 +37,45 @@ export default function Projects() {
       <main className="max-w-6xl mx-auto px-8 py-20">
         {/* 头部区域 */}
         
-        <header className="bg-white/90 backdrop-blur-lg rounded-[1.5rem] shadow-2xl p-12 mb-20 border-2 border-gray-200/80">
-          <div className="space-y-8">
-            <h1 className="text-[2.75rem] font-bold text-gray-800 flex items-center space-x-6">
-              <svg 
-                className="w-12 h-12 text-amber-600"
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth="2" 
-                  d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"
-                />
-              </svg>
-              <span>创意项目</span>
-            </h1>
-            <div className="flex items-center space-x-8 text-lg">
-              <span className="bg-amber-100 text-amber-600 px-5 py-2 rounded-xl">
-                共 {projects.length} 个项目
-              </span>
-              <div className="flex space-x-4">
-                <button className="px-4 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors">
-                  全部
-                </button>
-                <button className="px-4 py-2 bg-purple-100 text-purple-600 rounded-lg hover:bg-purple-200 transition-colors">
-                  进行中
-                </button>
-                <button className="px-4 py-2 bg-emerald-100 text-emerald-600 rounded-lg hover:bg-emerald-200 transition-colors">
-                  已完成
-                </button>
-              </div>
+        <header className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl p-8 mb-12 border border-gray-200/80">
+          <h1 className="text-4xl font-bold text-gray-800 mb-4 flex items-center">
+            <svg 
+              className="w-8 h-8 text-amber-600 mr-3"
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth="2" 
+                d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"
+              />
+            </svg>
+            创意项目
+          </h1>
+          <div className="flex items-center space-x-4 text-gray-600">
+            <span className="bg-amber-100 text-amber-600 px-3 py-1 rounded-full text-sm">
+              共 {projects.length} 个项目
+            </span>
+            <div className="flex space-x-4">
+              <button className="px-4 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors">
+                全部
+              </button>
+              <button className="px-4 py-2 bg-purple-100 text-purple-600 rounded-lg hover:bg-purple-200 transition-colors">
+                进行中
+              </button>
+              <button className="px-4 py-2 bg-emerald-100 text-emerald-600 rounded-lg hover:bg-emerald-200 transition-colors">
+                已完成
+              </button>
             </div>
           </div>
         </header>
 
         {/* 项目网格 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {projects.map(project => (
+          {
+          projects.map(project => (
             <article 
               key={project.id}
               className="group bg-white/90 backdrop-blur-sm rounded-[1.5rem] p-10 border-2 border-gray-200/80 hover:border-amber-200 transition-all duration-300 hover:shadow-2xl"
