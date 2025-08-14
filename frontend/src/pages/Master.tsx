@@ -11,10 +11,31 @@ export default function Master() {
     projectCount: 1,
     readCount: 0,
     lifeCount: 0,
-    serverRunTime: 0,
+    friendCount: 0
   })
 
+  const [friendList, setFriendList] = useState([
+    {
+      id: 0,
+      name: "Alex",
+      descript: "她来自North",
+      img: "Loading...",
+      contact: "",
+      contact_type: "email"
+    }
+  ])
 
+  useEffect(() => {
+    resMethod('/master', 'get').then(res => {
+
+      setMasterData(res)
+    })
+
+    resMethod('/master/friend', 'get').then(res => {
+      
+      setFriendList(res)
+    })
+  }, [])
 
 
 
@@ -36,7 +57,7 @@ export default function Master() {
             Welcome to my blog 😽
           </p>
           <p className="text-gray-400 text-lg leading-relaxed italic">
-            每日Tips 🎻: {masterData.tips}<br/>
+            Tips 🎻: {masterData.tips}<br/>
           </p>
         </header>
 
@@ -109,8 +130,8 @@ export default function Master() {
                 <div className="text-sm text-gray-500">生活动态</div>
               </div>
               <div className="p-4 bg-gray-50 rounded-xl hover:bg-white transition-colors">
-                <div className="text-2xl font-bold text-emerald-600">{masterData.serverRunTime}</div>
-                <div className="text-sm text-gray-500">持续天数</div>
+                <div className="text-2xl font-bold text-emerald-600">{masterData.friendCount}</div>
+                <div className="text-sm text-gray-500">友链</div>
               </div>
             </div>
           </div>
@@ -120,43 +141,37 @@ export default function Master() {
         <section className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl p-8 border border-gray-200/80">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-semibold text-gray-800 flex items-center">
-              <span className="mr-2">📌</span>
-              最新动态
+              <span className="mr-2">⛓</span>
+              友链
             </h2>
-            <div className="flex space-x-4">
-              <button className="flex items-center text-gray-600 hover:text-amber-600 transition-colors">
-                <span>全部分类</span>
-                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-            </div>
           </div>
 
           {/* 动态列表 */}
-          <div className="space-y-6">
-        {/* {MasterData.latestUpdates.map((update: any) => (
+          <div className="space-y-6 flex">
+        {friendList.map((friend: any) => (
+          <a href={friend.contact}>
           <div 
-            key={update.id}
-            className="group p-6 rounded-xl border border-gray-200/80 hover:border-amber-200 transition-all duration-300 hover:shadow-lg"
+            key={friend.id}
+            className="group p-6 m-1 rounded-xl border border-gray-200/80 hover:border-amber-200 transition-all duration-300 hover:shadow-lg"
           >
-            <div className="flex items-start justify-between">
-              <div className="flex-1">
+            <div className="flex items-start">
+              <img src={friend.img} className="w-15 h-15 rounded-full mr-4" alt={friend.name} />
+              <div>
                 <h3 className="text-lg font-medium text-gray-800 group-hover:text-amber-600 transition-colors">
-                  {update.title}
+                  {friend.name}
                 </h3>
                 <p className="text-gray-600 mt-2 line-clamp-2">
-                  {update.content}
+                  {friend.descript}
                 </p>
                 <div className="flex items-center mt-4 space-x-4 text-sm text-gray-500">
-                  <span>📅 </span>
-                  <span>🏷 </span>
                 </div>
               </div>
             </div>
           </div>
-        ))} */}
+          </a>
+        ))}
       </div>
+      
         </section>
       </main>
     </div>

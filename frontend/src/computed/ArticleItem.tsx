@@ -16,7 +16,7 @@ export default function ArticleItem() {
     date: 'Loading..',
     connect: 'Loading..',
     views: 'Loading..',
-    like: 0,
+    likes: 0,
   });
 
   // 点赞状态管理
@@ -34,7 +34,7 @@ export default function ArticleItem() {
    const handleLike = async () => {
     setIsLiked(!isLiked); //reacthooks是异步 会先执行增减逻辑
     isLiked ? setLikes(likes - 1) : setLikes(likes + 1);
-    return isLiked ? setLike('POST', '-'): setLike('POST', '+');
+    return isLiked ? setLike('GET', 'remove'): setLike('GET', 'add');
   };
 
   useEffect(() => {
@@ -51,11 +51,11 @@ export default function ArticleItem() {
           ...articleResponse,
           id: connectResponse.id,
           connect: connectResponse.connect,
-          likes: connectResponse.like,
+          likes: connectResponse.likes,
         });
 
         // 初始化点赞状态
-        setLikes(connectResponse.like);
+        setLikes(connectResponse.likes);
         setIsLiked(false);
 
         // 加载完成
@@ -67,7 +67,7 @@ export default function ArticleItem() {
     }
 
     fetchArticleDatas();
-    resMethod(`/articles/views/+/${params.id}`, "POST")
+    resMethod(`/articles/views/${params.id}`, "GET")
     console.log(artConnect)
   
   }, []);

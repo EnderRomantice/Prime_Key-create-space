@@ -13,7 +13,7 @@ export default function Projects() {
       tech: ["Lording.."],
       progress: "Lording..",
       status: "Lording..",
-      thumbnail: ""
+      img: ""
     }
   ]);
 
@@ -94,7 +94,7 @@ useEffect(() => {
                 {/* 项目封面 */}
                 <div className="relative rounded-2xl overflow-hidden aspect-video">
                   <img 
-                    src={project.thumbnail} 
+                    src={project.img} 
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
