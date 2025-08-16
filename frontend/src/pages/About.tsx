@@ -5,29 +5,34 @@ import { useInView } from "react-intersection-observer";
 import TechStackCard from "../computed/TechStackCard";
 import SocialLink from "../computed/SocialLink";
 import PixelTransition from "../computed/reactbits/PixelTransition";
-import { GithubIcon, GmailIcon, WeChatIcon, QQIcon, GiteeIcon } from "../computed/Icons";
+import { GithubIcon, QQIcon, GiteeIcon } from "../computed/Icons";
 import resMethod from "../tools/resMethod";
 
 export default function About() {
-
   interface Now {
     text: string;
   }
 
-  const [ref, inView] = useInView({
+  // ✅ 修复：使用两个独立的 ref
+  const [refLeft, inViewLeft] = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+  const [refRight, inViewRight] = useInView({
     triggerOnce: true,
     threshold: 0.2,
   });
 
-  const [nowList ,setNowList] = useState<Now[]>([{text: "🤔 "}]);
+  const [nowList, setNowList] = useState<Now[]>([{ text: "🤔 " }]);
+  const [imgUrl] = useState(
+    "https://foruda.gitee.com/avatar/1735578534702305405/15325054_rustlove_1735578534.png!avatar100"
+  );
 
-  const [imgUrl] = useState("https://foruda.gitee.com/avatar/1735578534702305405/15325054_rustlove_1735578534.png!avatar100");
-
-useEffect(() => {
-  resMethod('/about/now', 'GET').then((res) => {
-    setNowList(res)
-  })
-}, [])
+  useEffect(() => {
+    resMethod("/about/now", "GET").then((res) => {
+      setNowList(res);
+    });
+  }, []);
 
   // 动画配置
   const containerVariants = {
@@ -47,8 +52,10 @@ useEffect(() => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-gray-100 flex justify-center items-center scroll-smooth">
-      <main className="w-full py-24">
+    // ✅ 修复：防止横向溢出
+    <div className="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen overflow-x-hidden">
+      {/* ✅ 修复：使用 max-w-screen-2xl 限制最大宽度 */}
+      <main className="max-w-screen-2xl mx-auto w-full py-24 px-4">
         {/* 头像区块 */}
         <motion.div
           className="flex justify-center mb-20"
@@ -56,13 +63,22 @@ useEffect(() => {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: "spring", stiffness: 60 }}
         >
-          <div className="relative group">
+          {/* ✅ 修复：固定头像容器尺寸，防止动画撑开 */}
+          <div
+            className="relative group"
+            style={{ width: "200px", height: "200px" }}
+          >
             <PixelTransition
               firstContent={
                 <img
                   src={imgUrl}
-                  alt="default pixel transition content, a cat!"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  alt="PK 的头像"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderRadius: "1rem",
+                  }}
                 />
               }
               secondContent={
@@ -73,6 +89,7 @@ useEffect(() => {
                     display: "grid",
                     placeItems: "center",
                     backgroundColor: "#111",
+                    borderRadius: "1rem",
                   }}
                 >
                   <p
@@ -95,15 +112,20 @@ useEffect(() => {
           </div>
         </motion.div>
 
-        <motion.div className="flex justify-center gap-12 xl:flex-row flex-col mx-5">
+        {/* 卡片布局 */}
+        <div className="flex flex-col lg:flex-row justify-center gap-12 mx-5">
+          {/* 左侧卡片 */}
           <motion.div
-            ref={ref}
-            className="bg-white/90 backdrop-blur-lg rounded-[2rem] p-12 border border-gray-200/80 shadow-sm transition hover:shadow-xl w-full xl:w-1/3"
-            initial="visible"
-            // animate={inView ? "visible" : "hidden"}
+            ref={refLeft}
+            className="bg-white/90 backdrop-blur-lg rounded-[2rem] p-12 border border-gray-200/80 shadow-sm transition hover:shadow-xl w-full lg:w-1/3"
+            // ✅ 修复：固定最小高度，防止动画时布局跳动
+            style={{ minHeight: "520px" }}
+            initial="hidden"
+            animate={inViewLeft ? "visible" : "hidden"}
             variants={containerVariants}
+            // ✅ 可选：启用 layout 稳定性
+            layout
           >
-            {/* 标题 */}
             <motion.h1
               className="text-4xl font-bold text-gray-800 mb-8"
               variants={itemVariants}
@@ -111,12 +133,10 @@ useEffect(() => {
               <span className="bg-gradient-to-r from-amber-600 to-amber-400 bg-clip-text text-transparent">
                 PK
               </span>
-                <span className="xl:visible invisible mx-4 text-gray-300">|</span>
-                <span className="xl:visible invisible text-gray-600">数字游民</span>
-
+              <span className="xl:visible invisible mx-4 text-gray-300">|</span>
+              <span className="xl:visible invisible text-gray-600">数字游民</span>
             </motion.h1>
 
-            {/* 个人简介 */}
             <motion.div
               className="text-lg text-gray-600 leading-relaxed mb-12 space-y-6"
               variants={itemVariants}
@@ -131,7 +151,7 @@ useEffect(() => {
                 className="text-3xl font-bold text-gray-800 mb-8"
                 variants={itemVariants}
               >
-                <span className="bg-gradient-to-r text-gray-600">联络</span>
+                <span className="text-gray-600">联络</span>
               </motion.h2>
 
               <motion.div
@@ -139,41 +159,36 @@ useEffect(() => {
                 variants={itemVariants}
               >
                 <SocialLink
-                  href="https://github.com/EnderRomantice"
-                  icon={<GithubIcon />}
-                  label="Github"
-                ></SocialLink>
-                <SocialLink
-                  href="https://enderromantic@gmail.com"
-                  icon={<GmailIcon />}
-                  label="Gmail"
-                ></SocialLink>
-                <SocialLink
-                  href="https://1537871968@qq.com"
+                  href="https://rustlove.cn/file/qq.jpg"
                   icon={<QQIcon />}
                   label="QQ"
-                ></SocialLink>
-                <SocialLink
-                  href="https://u.wechat.com/MA8QZaY06xvoIu8dOzrcH60?s=2"
-                  icon={<WeChatIcon />}
-                  label="Wechat"
-                ></SocialLink>
+                />
                 <SocialLink
                   href="https://gitee.com/Prime_Key"
                   icon={<GiteeIcon />}
                   label="Gitee"
-                ></SocialLink>
+                />
+                <SocialLink
+                  href="https://github.com/EnderRomantice"
+                  icon={<GithubIcon />}
+                  label="Github"
+                />
               </motion.div>
             </motion.div>
           </motion.div>
+
+          {/* 中间卡片 */}
           <TechStackCard />
 
+          {/* 右侧卡片：现在 */}
           <motion.div
-            ref={ref}
-            className="bg-white/90 backdrop-blur-lg rounded-[2rem] p-12 border border-gray-200/80 shadow-sm transition hover:shadow-xl w-full xl:w-1/3"
+            ref={refRight}
+            className="bg-white/90 backdrop-blur-lg rounded-[2rem] p-12 border border-gray-200/80 shadow-sm transition hover:shadow-xl w-full lg:w-1/3"
+            style={{ minHeight: "520px" }}
             initial="hidden"
-            animate={inView ? "visible" : "hidden"}
+            animate={inViewRight ? "visible" : "hidden"}
             variants={containerVariants}
+            layout
           >
             <motion.h1
               className="text-4xl font-bold text-gray-800 mb-8"
@@ -183,15 +198,15 @@ useEffect(() => {
             </motion.h1>
 
             <motion.div
-              className="text-lg text-gray-600 leading-relaxed mb-12 space-y-6 flex-nowrap"
+              className="text-lg text-gray-600 leading-relaxed mb-12 space-y-6"
               variants={itemVariants}
             >
-              {nowList.map((item) => {
-                 return <p>{item.text}</p>
-              })}
+              {nowList.map((item, index) => (
+                <p key={index}>{item.text}</p>
+              ))}
             </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </main>
     </div>
   );

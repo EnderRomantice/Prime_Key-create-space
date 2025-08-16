@@ -2,6 +2,7 @@ import "../output.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import resMethod from "../tools/resMethod";
+import { motion } from "framer-motion"; 
 
 export default function Articles() {
   const [articles, setArticles] = useState([
@@ -17,7 +18,9 @@ export default function Articles() {
 
   useEffect(() => {
     resMethod(`/articles/list`, "GET").then((res) => {
-      setArticles(res);
+      setArticles(res.data || res); 
+    }).catch(() => {
+      setArticles([]); 
     });
   }, []);
 
@@ -42,64 +45,71 @@ export default function Articles() {
             </svg>
             Public learn
           </h1>
-          <p className="text-gray-600 text-lg"> The science of thinking  </p>
+          <p className="text-gray-600 text-lg"> The science of thinking </p>
         </header>
 
         {/* 文章网格布局容器 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {articles.map((article) => (
-            <article
-              key={article.id}
-              className="group bg-white/90 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/80 hover:border-amber-200 transition-all duration-300 hover:shadow-xl flex flex-col h-full"
-            >
-              <Link
-                to={"/articles/" + article.id}
-                className="flex flex-col h-full"
+          {articles.length === 0 ? (
+            <p className="text-center py-8 text-gray-500 col-span-3">
+              暂无文章
+            </p>
+          ) : (
+            articles.map((article, index) => (
+              <motion.article
+                key={article.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.4, 
+                  delay: index * 0.1 // 每个卡片依次出现
+                }}
+                className="group bg-white/90 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/80 hover:border-amber-200 transition-all duration-300 hover:shadow-xl flex flex-col h-full"
               >
-                <div className="flex items-center justify-between mb-4">
-                  <span className="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">
-                    {article.tag}
-                  </span>
-                  <span className="text-gray-500 text-sm">
-                    📅 {article.date}
-                  </span>
-                </div>
-
-                <div className="flex-grow">
-                  <h2 className="text-xl font-semibold text-gray-800 mb-3 group-hover:text-amber-600 transition-colors line-clamp-2">
-                    {article.title}
-                  </h2>
-                  <p className="text-gray-600 mb-4 text-sm line-clamp-3">
-                    {article.excerpt}
-                  </p>
-                </div>
-
-                <div className="flex justify-between items-center mt-auto pt-4 border-gray-100">
-                  <div className="flex items-center space-x-4 text-sm text-gray-500">
-                    <span>👀 {article.views}</span>
+                <Link to={`/articles/${article.id}`} className="flex flex-col h-full">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">
+                      {article.tag}
+                    </span>
+                    <span className="text-gray-500 text-sm">📅 {article.date}</span>
                   </div>
 
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button className="p-2 bg-amber-50 text-amber-600 rounded-lg hover:bg-amber-100 transition-colors">
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M13 5l7 7-7 7M5 5l7 7-7 7"
-                        />
-                      </svg>
-                    </button>
+                  <div className="flex-grow">
+                    <h2 className="text-xl font-semibold text-gray-800 mb-3 group-hover:text-amber-600 transition-colors line-clamp-2">
+                      {article.title}
+                    </h2>
+                    <p className="text-gray-600 mb-4 text-sm line-clamp-3">
+                      {article.excerpt}
+                    </p>
                   </div>
-                </div>
-              </Link>
-            </article>
-          ))}
+
+                  <div className="flex justify-between items-center mt-auto pt-4 border-t border-gray-100">
+                    <div className="flex items-center space-x-4 text-sm text-gray-500">
+                      <span>👀 {article.views}</span>
+                    </div>
+
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                      <button className="p-2 bg-amber-50 text-amber-600 rounded-lg hover:bg-amber-100 transition-colors">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </Link>
+              </motion.article>
+            ))
+          )}
         </div>
       </main>
     </div>

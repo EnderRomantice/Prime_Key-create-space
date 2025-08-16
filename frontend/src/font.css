@@ -1,0 +1,8 @@
+@font-face { 
+    font-family: 'open';
+    src: url('https://rustlove.cn/file/fonts.otf');
+}
+
+* {
+    font-family: 'open';
+}

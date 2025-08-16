@@ -18,6 +18,7 @@ export default function Master() {
     {
       id: 0,
       name: "Alex",
+      title: "Web前端工程师",
       descript: "她来自North",
       img: "Loading...",
       contact: "",
@@ -147,7 +148,7 @@ export default function Master() {
           </div>
 
           {/* 动态列表 */}
-          <div className="space-y-6 lg:flex">
+          <div className="space-y-6 lg:flex flex-wrap justify-around">
         {friendList.map((friend: any) => (
           <a href={friend.contact}>
           <div 
@@ -160,10 +161,14 @@ export default function Master() {
                 <h3 className="text-lg font-medium text-gray-800 group-hover:text-amber-600 transition-colors">
                   {friend.name}
                 </h3>
+                  <p className="text-gray-600 mt-2 line-clamp-2">
+                  {friend.title}
+                </p>
                 <p className="text-gray-600 mt-2 line-clamp-2">
                   {friend.descript}
                 </p>
                 <div className="flex items-center mt-4 space-x-4 text-sm text-gray-500">
+                  {friend.contact_type}: {friend.contact}
                 </div>
               </div>
             </div>

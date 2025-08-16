@@ -9,6 +9,7 @@ import About from "./pages/About.tsx";
 import Aurora from "./computed/reactbits/Aurora.tsx";
 import Life from "./pages/Life.tsx";
 import "./output.css";
+import "./font.css";
 
 export default function App() {
 
