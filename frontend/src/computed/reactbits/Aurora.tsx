@@ -211,5 +211,5 @@ export default function Aurora(props: AuroraProps) {
     };
   }, [amplitude]);
 
-  return <div ref={ctnDom} className="w-screen h-screen z-0 fixed" />;
+  return <div ref={ctnDom} className="w-screen min-h-screen z-0 fixed" />;
 }

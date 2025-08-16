@@ -1,4 +1,9 @@
 from tools.select_all import getSelectAll
 
 async def getProjectList() -> list:
-    return await getSelectAll("projects")
+    projectList = await getSelectAll("projects")
+
+    for i in projectList:
+        i["tech"] = i["tech"].split(",")
+
+    return projectList

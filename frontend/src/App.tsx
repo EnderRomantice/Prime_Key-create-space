@@ -18,9 +18,11 @@ export default function App() {
   return (
     <Router>
       {/* 背景渲染 */}
+
+
       <Aurora colorStops={backColor}></Aurora>
       {/* 主内容区 - 为底部Tabbar留出空间 */}
-      <main className="min-h-screen">
+      <main className="min-h-full pb-20 bg-gradient-to-br from-gray-50 to-gray-100">
         <Routes>
           <Route path="*" element={<Master />} />
           <Route path="/" element={<Master />} />

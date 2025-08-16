@@ -1,28 +1,33 @@
 import "../output.css";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import TechStackCard from "../computed/TechStackCard";
 import SocialLink from "../computed/SocialLink";
 import PixelTransition from "../computed/reactbits/PixelTransition";
 import { GithubIcon, GmailIcon, WeChatIcon, QQIcon, GiteeIcon } from "../computed/Icons";
+import resMethod from "../tools/resMethod";
 
 export default function About() {
+
+  interface Now {
+    text: string;
+  }
 
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
   });
 
-  const [imgUrl, setImgUrl] = useState("https://foruda.gitee.com/avatar/1735578534702305405/15325054_rustlove_1735578534.png!avatar100");
+  const [nowList ,setNowList] = useState<Now[]>([{text: "🤔 "}]);
 
-  // useEffect(() => {        
-  //   fetch("https://api.thecatapi.com/v1/images/search")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setImgUrl(data[0].url);
-  //     });
-  // }, []);
+  const [imgUrl] = useState("https://foruda.gitee.com/avatar/1735578534702305405/15325054_rustlove_1735578534.png!avatar100");
+
+useEffect(() => {
+  resMethod('/about/now', 'GET').then((res) => {
+    setNowList(res)
+  })
+}, [])
 
   // 动画配置
   const containerVariants = {
@@ -93,9 +98,9 @@ export default function About() {
         <motion.div className="flex justify-center gap-12 xl:flex-row flex-col mx-5">
           <motion.div
             ref={ref}
-            className="bg-white/90 backdrop-blur-lg rounded-[2rem] p-12 border border-gray-200/80 shadow-sm transition hover:shadow-xl xl:w-1/3"
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
+            className="bg-white/90 backdrop-blur-lg rounded-[2rem] p-12 border border-gray-200/80 shadow-sm transition hover:shadow-xl w-full xl:w-1/3"
+            initial="visible"
+            // animate={inView ? "visible" : "hidden"}
             variants={containerVariants}
           >
             {/* 标题 */}
@@ -107,7 +112,7 @@ export default function About() {
                 PK
               </span>
                 <span className="xl:visible invisible mx-4 text-gray-300">|</span>
-                <span claKssName="xl:visible invisible text-gray-600">数字游民</span>
+                <span className="xl:visible invisible text-gray-600">数字游民</span>
 
             </motion.h1>
 
@@ -165,7 +170,7 @@ export default function About() {
 
           <motion.div
             ref={ref}
-            className="bg-white/90 backdrop-blur-lg rounded-[2rem] p-12 border border-gray-200/80 shadow-sm transition hover:shadow-xl xl:w-1/3"
+            className="bg-white/90 backdrop-blur-lg rounded-[2rem] p-12 border border-gray-200/80 shadow-sm transition hover:shadow-xl w-full xl:w-1/3"
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={containerVariants}
@@ -181,10 +186,9 @@ export default function About() {
               className="text-lg text-gray-600 leading-relaxed mb-12 space-y-6 flex-nowrap"
               variants={itemVariants}
             >
-              <p>⛽ 接单续命中...</p>
-              <p>💼 准备暑假的实习ing</p>
-              <p>🤔 构思未来，等待机会</p>
-              <p>🎸 抽空练习吉他！</p>
+              {nowList.map((item) => {
+                 return <p>{item.text}</p>
+              })}
             </motion.div>
           </motion.div>
         </motion.div>

@@ -4,33 +4,44 @@ import { useState, useEffect } from "react";
 import resMethod from "../tools/resMethod";
 
 export default function Projects() {
+
+
+  interface Project {
+    id: number;
+    title: string;
+    descript: string;
+    tech: string[];
+    progress: string;
+    status: string;
+    img: string;
+
+  }
+
+
+
+
+
+
   // 模拟项目数据
-  const [projects, setProjects] = useState([
+  const [projects, setProjects] = useState<Project[]>([
     {
       id: 0,
-      title: "Lording..",
-      descript: "Lording..",
-      tech: ["Lording.."],
-      progress: "Lording..",
-      status: "Lording..",
+      title: "Loading..",
+      descript: "Loading..",
+      tech: ["Loading.."],
+      progress: "Loading..",
+      status: "Loading..",
       img: ""
     }
   ]);
 
 useEffect(() => {
   resMethod('/projects', 'GET')
-    .then(res => {
-      const formattedProjects = res.map(project => ({
-        ...project,
-        tech: typeof project.tech === 'string'
-          ? project.tech.split(',').map(tag => tag.trim()).filter(Boolean) // filter(Boolean) 防止空标签
-          : project.tech
-      }));
-      setProjects(formattedProjects);
-    })
-    .catch(err => {
-      console.error("请求项目数据失败:", err);
-    });
+  .then(
+    res => setProjects(res)
+
+  )
+
 }, []);
     // fetch('http://127.0.0.1:8500/projects')
     //   .then(
@@ -62,23 +73,12 @@ useEffect(() => {
                 d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"
               />
             </svg>
-            创意项目
+            Projects
           </h1>
           <div className="flex items-center space-x-4 text-gray-600">
             <span className="bg-amber-100 text-amber-600 px-3 py-1 rounded-full text-sm">
               共 {projects.length} 个项目
             </span>
-            <div className="flex space-x-4">
-              <button className="px-4 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors">
-                全部
-              </button>
-              <button className="px-4 py-2 bg-purple-100 text-purple-600 rounded-lg hover:bg-purple-200 transition-colors">
-                进行中
-              </button>
-              <button className="px-4 py-2 bg-emerald-100 text-emerald-600 rounded-lg hover:bg-emerald-200 transition-colors">
-                已完成
-              </button>
-            </div>
           </div>
         </header>
 

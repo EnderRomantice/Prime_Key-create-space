@@ -75,7 +75,7 @@ export default function Master() {
                 技术文章
               </h2>
             </div>
-            <p className="text-gray-600 mb-4">探索最新技术实践与深度解析</p>
+            <p className="text-gray-600 mb-4">Public learn</p>
             <div className="flex justify-between items-center text-sm text-gray-500">
               <span>📚 已更新 {masterData.articleCount} 篇</span>
               <button className="px-4 py-2 bg-amber-50 text-amber-600 rounded-lg hover:bg-amber-100 transition-colors">
@@ -96,14 +96,14 @@ export default function Master() {
                 创意项目
               </h2>
             </div>
-            <p className="text-gray-600 mb-4">实践驱动的创新作品集合</p>
+            <p className="text-gray-600 mb-4">学习与实践的循环</p>
             <div className="animate-progress-bar h-2 bg-gray-200 rounded-full mb-4 overflow-hidden">
               <div className="h-full bg-purple-500 transition-all duration-1000" style={{ width: '75%' }} />
             </div>
             <div className="flex justify-between items-center text-sm text-gray-500">
               <span>🚀 进行中项目 {masterData.projectCount} 个</span>
               <button className="px-4 py-2 bg-purple-50 text-purple-600 rounded-lg hover:bg-purple-100 transition-colors">
-                <Link to={"/projects"}>探索项目 →</Link>
+                <Link to={"/projects"}>探索 →</Link>
               </button>
             </div>
           </div>
@@ -147,7 +147,7 @@ export default function Master() {
           </div>
 
           {/* 动态列表 */}
-          <div className="space-y-6 flex">
+          <div className="space-y-6 lg:flex">
         {friendList.map((friend: any) => (
           <a href={friend.contact}>
           <div 

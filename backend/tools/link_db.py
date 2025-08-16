@@ -1,10 +1,9 @@
 import aiosqlite
 import os
 
-URL = os.getcwd()
-
 async def get_db_connection():
-    conn = await aiosqlite.connect(f'{URL}\\database.db')
+    # 使用 os.path.join 自动适配 / 或 \
+    db_path = os.path.join(os.getcwd(), "database.db")
+    conn = await aiosqlite.connect(db_path)
     conn.row_factory = aiosqlite.Row
-
     return conn

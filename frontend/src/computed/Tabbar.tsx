@@ -107,7 +107,7 @@ export default function Tabbar() {
     <nav className="z-10 fixed bottom-6 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl p-3 border border-gray-200/80">
       <div className="flex gap-6">
         {/* 常规导航项 */}
-        {navItems.map((item, index) => (
+        {navItems.map((item) => (
           <Link
             key={item.path}
             to={item.path}
