@@ -55,7 +55,7 @@ useEffect(() => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
 
-      <main className="max-w-6xl mx-auto px-8 py-20">
+      <main className="max-w-6xl mx-auto px-4 py-12">
         {/* 头部区域 */}
         
         <header className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl p-8 mb-12 border border-gray-200/80">
