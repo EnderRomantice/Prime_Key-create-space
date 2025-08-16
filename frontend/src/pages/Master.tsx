@@ -58,7 +58,7 @@ export default function Master() {
             Welcome to my blog 😽
           </p>
           <p className="text-gray-400 text-lg leading-relaxed italic">
-            Tips 🎻: {masterData.tips}<br/>
+            Tips: {masterData.tips}<br/>
           </p>
         </header>
 
