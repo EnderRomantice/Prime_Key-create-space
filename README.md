@@ -3,7 +3,9 @@
 ![页面展示](https://gitee.com/rustlove/Prime_Key-create-space/raw/master/backend/assets/Master.png)
 ![页面展示2](https://gitee.com/rustlove/Prime_Key-create-space/raw/master/backend/assets/About.png)
 
-#### 使用方法
+😉 **该项目已上线：rustlove.cn**
+
+#### 📕 使用方法
 
 ##### 克隆仓库
 `git clone https://github.com/EnderRomantice/Prime_Key-create-space`
@@ -30,7 +32,7 @@
 `pip install -r requirements.txt`
 
 
-#### 技术选型
+#### 🔧 技术选型
 
 ##### 前端
 
@@ -43,3 +45,7 @@ Markdown渲染 + 代码高亮: react-markdown, prism-react-renderer
 ##### 后端
 
 Python + FastAPI + SQLite
+
+#### 😚 为什么选择SQLite?不怕锁吗？
+
+使用aiosqlite赋予SQLite多线程能力，增加了连接池来避免触发文件锁问题，
