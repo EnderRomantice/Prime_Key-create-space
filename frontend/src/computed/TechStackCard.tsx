@@ -15,9 +15,9 @@ export default function TechStackCard() {
       { name: "Vue.js", level: 30, category: 'frontend' },
       { name: "TypeScript", level: 50, category: 'frontend' },
       { name: "Tailwind CSS", level: 40, category: 'styling' },
+      { name: "Python", level: 60, category: 'backend' },
       { name: "Node.js", level: 50, category: 'backend' },
       { name: "Rust", level: 10, category: 'backend' },
-      { name: "FastAPI", level: 50, category: 'backend' },
       { name: "SQL", level: 50, category: 'database' },
       { name: "Vite", level: 30, category: 'build' },
     ];
@@ -47,7 +47,7 @@ export default function TechStackCard() {
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
-          技术能力矩阵
+          Technical capabilities
         </h3>
   
         <div className="space-y-6">
@@ -82,11 +82,11 @@ export default function TechStackCard() {
   
         {/* 图例说明 */}
         <div className="mt-8 pt-6 border-t border-gray-200/50 flex flex-wrap gap-6">
-          <LegendItem color="bg-blue-500" label="前端技术" />
-          <LegendItem color="bg-green-500" label="后端技术" />
-          <LegendItem color="bg-cyan-400" label="样式设计" />
-          <LegendItem color="bg-purple-400" label="数据库" />
-          <LegendItem color="bg-amber-500" label="构建工具" />
+          <LegendItem color="bg-blue-500" label="fontend" />
+          <LegendItem color="bg-green-500" label="backend" />
+          <LegendItem color="bg-cyan-400" label="style" />
+          <LegendItem color="bg-purple-400" label="database" />
+          <LegendItem color="bg-amber-500" label="bulid" />
         </div>
       </motion.div>
     )

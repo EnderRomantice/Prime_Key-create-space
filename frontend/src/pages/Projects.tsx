@@ -67,9 +67,7 @@ export default function Projects() {
             Projects
           </h1>
           <div className="flex items-center space-x-4 text-gray-600">
-            <span className="bg-amber-100 text-amber-600 px-3 py-1 rounded-full text-sm">
-              共 {projects.length} 个项目
-            </span>
+            The manifestation of existential value
           </div>
         </header>
 
@@ -77,7 +75,7 @@ export default function Projects() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {projects.length === 0 ? (
             <p className="text-center py-8 text-gray-500 col-span-2">
-              暂无项目
+              underfind project
             </p>
           ) : (
             projects.map((project, index) => (
@@ -152,7 +150,7 @@ export default function Projects() {
                         />
                       </div>
                       <div className="flex justify-between text-sm text-gray-600">
-                        <span>开发进度</span>
+                        <span>Progress</span>
                         <span>{project.progress}%</span>
                       </div>
                     </div>

@@ -8,7 +8,7 @@ export default function Tabbar() {
   const navItems = [
     {
       path: "/",
-      name: "首页",
+      name: "Home",
       icon: (
         <svg
           className="w-7 h-7 transition-colors"
@@ -27,7 +27,7 @@ export default function Tabbar() {
     },
     {
       path: "/articles",
-      name: "文章",
+      name: "Articles",
       icon: (
         <svg
           className="w-7 h-7 transition-colors"
@@ -46,7 +46,7 @@ export default function Tabbar() {
     },
     {
       path: "/life",
-      name: "生活",
+      name: "Life",
       icon: (
         <svg
           className="w-7 h-7 transition-colors"
@@ -65,7 +65,7 @@ export default function Tabbar() {
     },
     {
       path: "/projects",
-      name: "项目",
+      name: "Projects",
       icon: (
         <svg
           className="w-7 h-7 transition-colors"
@@ -84,7 +84,7 @@ export default function Tabbar() {
     },
     {
       path: "/about",
-      name: "关于",
+      name: "About",
       icon: (
         <svg
           className="w-7 h-7 transition-colors"

@@ -17,8 +17,8 @@ export default function Master() {
   const [friendList, setFriendList] = useState([
     {
       id: 0,
-      name: "Alex",
-      title: "Web前端工程师",
+      name: "Loading..",
+      title: "神秘的存在",
       descript: "她来自North",
       img: "Loading...",
       contact: "",
@@ -51,7 +51,7 @@ export default function Master() {
         {/* 头部区域 */}
         <header className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl p-8 mb-12 border border-gray-200/80">
           <h1 className="text-4xl font-bold text-gray-800 mb-4 animate-fade-in-up">
-            Hello, 我是PK.
+            Hi👋, I am PK, Software engineer and quantitative researcher
             <span className="text-amber-600 ml-2">✨</span>
           </h1>
           <p className="text-gray-800 text-xl py-4 font-bold">
@@ -73,14 +73,14 @@ export default function Master() {
                 </svg>
               </div>
               <h2 className="text-2xl font-semibold text-gray-800 group-hover:text-amber-600 transition-colors">
-                技术文章
+                articles
               </h2>
             </div>
             <p className="text-gray-600 mb-4">Public learn</p>
             <div className="flex justify-between items-center text-sm text-gray-500">
-              <span>📚 已更新 {masterData.articleCount} 篇</span>
+              <span>📚 total article {masterData.articleCount}</span>
               <button className="px-4 py-2 bg-amber-50 text-amber-600 rounded-lg hover:bg-amber-100 transition-colors">
-              <Link to={"/articles"}>查看全部 →</Link>
+              <Link to={"/articles"}>any article →</Link>
               </button>
             </div>
           </div>
@@ -94,17 +94,17 @@ export default function Master() {
                 </svg>
               </div>
               <h2 className="text-2xl font-semibold text-gray-800 group-hover:text-purple-600 transition-colors">
-                创意项目
+                projects
               </h2>
             </div>
-            <p className="text-gray-600 mb-4">学习与实践的循环</p>
+            <p className="text-gray-600 mb-4">The cycle of learning and practice</p>
             <div className="animate-progress-bar h-2 bg-gray-200 rounded-full mb-4 overflow-hidden">
               <div className="h-full bg-purple-500 transition-all duration-1000" style={{ width: '75%' }} />
             </div>
             <div className="flex justify-between items-center text-sm text-gray-500">
-              <span>🚀 进行中项目 {masterData.projectCount} 个</span>
+              <span>🚀 total project {masterData.projectCount}</span>
               <button className="px-4 py-2 bg-purple-50 text-purple-600 rounded-lg hover:bg-purple-100 transition-colors">
-                <Link to={"/projects"}>探索 →</Link>
+                <Link to={"/projects"}>explore →</Link>
               </button>
             </div>
           </div>
@@ -118,21 +118,21 @@ export default function Master() {
                 </svg>
               </div>
               <h2 className="text-2xl font-semibold text-gray-800 group-hover:text-emerald-600 transition-colors">
-                成长轨迹
+                milestone
               </h2>
             </div>
             <div className="grid grid-cols-3 gap-4 text-center mb-4">
               <div className="p-4 bg-gray-50 rounded-xl hover:bg-white transition-colors">
                 <div className="text-2xl font-bold text-amber-600">{masterData.readCount}</div>
-                <div className="text-sm text-gray-500">累计阅读</div>
+                <div className="text-sm text-gray-500">total read</div>
               </div>
               <div className="p-4 bg-gray-50 rounded-xl hover:bg-white transition-colors">
                 <div className="text-2xl font-bold text-purple-600">{masterData.lifeCount}</div>
-                <div className="text-sm text-gray-500">生活动态</div>
+                <div className="text-sm text-gray-500">life experience</div>
               </div>
               <div className="p-4 bg-gray-50 rounded-xl hover:bg-white transition-colors">
                 <div className="text-2xl font-bold text-emerald-600">{masterData.friendCount}</div>
-                <div className="text-sm text-gray-500">友链</div>
+                <div className="text-sm text-gray-500">Friends</div>
               </div>
             </div>
           </div>
@@ -142,8 +142,8 @@ export default function Master() {
         <section className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl p-8 border border-gray-200/80">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-semibold text-gray-800 flex items-center">
-              <span className="mr-2">⛓</span>
-              友链
+              <span className="mr-2"></span>
+              Friend links
             </h2>
           </div>
 

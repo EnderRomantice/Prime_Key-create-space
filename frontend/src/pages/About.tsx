@@ -9,11 +9,13 @@ import { GithubIcon, QQIcon, GiteeIcon } from "../computed/Icons";
 import resMethod from "../tools/resMethod";
 
 export default function About() {
-  interface Now {
+
+  interface Span {
+    id: number;
     text: string;
   }
 
-  // ✅ 修复：使用两个独立的 ref
+  // 使用两个独立的 ref
   const [refLeft, inViewLeft] = useInView({
     triggerOnce: true,
     threshold: 0.2,
@@ -23,7 +25,10 @@ export default function About() {
     threshold: 0.2,
   });
 
-  const [nowList, setNowList] = useState<Now[]>([{ text: "🤔 " }]);
+  const [nowList, setNowList] = useState<Span[]>([{ id: 0, text: "🤔 " }]);
+  const [aboutData, setAboutData] = useState<Span[]>([{ id: 0, text: "🤔 " }]);
+
+
   const [imgUrl] = useState(
     "https://foruda.gitee.com/avatar/1735578534702305405/15325054_rustlove_1735578534.png!avatar100"
   );
@@ -32,6 +37,10 @@ export default function About() {
     resMethod("/about/now", "GET").then((res) => {
       setNowList(res);
     });
+
+    resMethod("/about", "GET").then((res)=> {
+      setAboutData(res)
+    })
   }, []);
 
   // 动画配置
@@ -52,9 +61,9 @@ export default function About() {
   };
 
   return (
-    // ✅ 修复：防止横向溢出
+    // 防止横向溢出
     <div className="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen overflow-x-hidden">
-      {/* ✅ 修复：使用 max-w-screen-2xl 限制最大宽度 */}
+      {/* 使用 max-w-screen-2xl 限制最大宽度 */}
       <main className="max-w-screen-2xl mx-auto w-full py-24 px-4">
         {/* 头像区块 */}
         <motion.div
@@ -63,7 +72,7 @@ export default function About() {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: "spring", stiffness: 60 }}
         >
-          {/* ✅ 修复：固定头像容器尺寸，防止动画撑开 */}
+          {/* 固定头像容器尺寸，防止动画撑开 */}
           <div
             className="relative group"
             style={{ width: "200px", height: "200px" }}
@@ -118,12 +127,11 @@ export default function About() {
           <motion.div
             ref={refLeft}
             className="bg-white/90 backdrop-blur-lg rounded-[2rem] p-12 border border-gray-200/80 shadow-sm transition hover:shadow-xl w-full lg:w-1/3"
-            // ✅ 修复：固定最小高度，防止动画时布局跳动
+            // 固定最小高度，防止动画时布局跳动
             style={{ minHeight: "520px" }}
             initial="hidden"
             animate={inViewLeft ? "visible" : "hidden"}
             variants={containerVariants}
-            // ✅ 可选：启用 layout 稳定性
             layout
           >
             <motion.h1
@@ -134,16 +142,16 @@ export default function About() {
                 PK
               </span>
               <span className="xl:visible invisible mx-4 text-gray-300">|</span>
-              <span className="xl:visible invisible text-gray-600">数字游民</span>
+              <span className="xl:visible invisible text-gray-600">Digital nomads</span>
             </motion.h1>
 
             <motion.div
-              className="text-lg text-gray-600 leading-relaxed mb-12 space-y-6"
+              className="text-lg text-gray-600 leading-relaxed mb-12 space-y-3"
               variants={itemVariants}
             >
-              <p>🚀 CS在读 期望实习与合作机会</p>
-              <p>💡 技术栈覆盖前端生态、Python, Rust高性能后端开发</p>
-              <p>🌱 热衷探索新鲜事物，持续成长中..</p>
+              {aboutData.map((item) => {
+                return <p>{item.text}</p>
+              })}
             </motion.div>
 
             <motion.div>
@@ -151,7 +159,7 @@ export default function About() {
                 className="text-3xl font-bold text-gray-800 mb-8"
                 variants={itemVariants}
               >
-                <span className="text-gray-600">联络</span>
+                <span className="text-gray-600">contact</span>
               </motion.h2>
 
               <motion.div
@@ -194,7 +202,7 @@ export default function About() {
               className="text-4xl font-bold text-gray-800 mb-8"
               variants={itemVariants}
             >
-              <span className="text-gray-600">现在</span>
+              <span className="text-gray-600">Now</span>
             </motion.h1>
 
             <motion.div

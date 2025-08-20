@@ -168,7 +168,6 @@ const Markdown: React.FC<MarkdownProps> = ({ connect }) => {
   };
 
   return (
-    // ✅ 移除 all: 'unset'，或手动补回样式
     <div
       style={{
         fontFamily: 'Arial, sans-serif',
