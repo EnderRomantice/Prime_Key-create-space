@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import resMethod from "../tools/resMethod";
 import { motion } from "framer-motion"; 
 
-export default function Articles() {
+export default function Articles({backColor}) {
   const [articles, setArticles] = useState([
     {
       id: 0,
@@ -25,7 +25,7 @@ export default function Articles() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className={"min-h-screen"}>
       <main className="max-w-6xl mx-auto px-4 py-12">
         {/* 头部区域 */}
         <header className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl p-8 mb-12 border border-gray-200/80">

@@ -46,7 +46,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className={"min-h-screen"}>
       <main className="max-w-6xl mx-auto px-4 py-12">
         {/* 头部区域 */}
         <header className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl p-8 mb-12 border border-gray-200/80">
@@ -102,7 +102,7 @@ export default function Projects() {
                       }}
                     />
                     <div className="absolute bottom-4 right-4 bg-white/90 px-4 py-1.5 rounded-full text-sm shadow-sm">
-                      {project.status === "进行中" ? (
+                      {project.status === "开发中" ? (
                         <span className="text-amber-600">🚧 {project.status}</span>
                       ) : (
                         <span className="text-emerald-600">✅ {project.status}</span>

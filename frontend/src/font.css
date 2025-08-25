@@ -1,8 +1,85 @@
-@font-face { 
-    font-family: 'open';
-    src: url('https://rustlove.cn/file/fonts.otf');
+
+@keyframes gradientX {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradient-x {
+  animation: gradientX 3s ease infinite;
+  background-size: 200% 200%;
+  background-position: 0% 50%;
 }
 
-* {
-    font-family: 'open';
+
+@keyframes gradientXSlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradient-x-slow {
+  animation: gradientXSlow 8s ease-in-out infinite;
+  background-size: 300% 300%;
+  background-position: 0% 50%;
+}
+
+@keyframes gradientY {
+  0% { background-position: 50% 0%; }
+  50% { background-position: 50% 100%; }
+  100% { background-position: 50% 0%; }
+}
+.animate-gradient-y {
+  animation: gradientY 5s ease infinite;
+  background-size: 200% 200%;
+  background-position: 50% 0%;
+}
+
+@keyframes gradientDiag {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+.animate-gradient-diag {
+  animation: gradientDiag 6s ease infinite;
+  background-size: 250% 250%;
+  background-position: 0% 0%;
+}
+
+
+@keyframes gradientRainbow {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 50% 50%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradient-rainbow {
+  animation: gradientRainbow 2s linear infinite;
+  background-size: 300% 300%;
+}
+
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spinSlow 20s linear infinite;
+}
+
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 5px #a855f7; }
+  50% { box-shadow: 0 0 30px #a855f7, 0 0 60px #c084fc; }
+}
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes flame {
+  0%, 100% { background-position: 0% 100%; }
+  50% { background-position: 100% 0%; }
+}
+.animate-flame {
+  animation: flame 3s ease-in-out infinite;
+  background-size: 150% 150%;
 }

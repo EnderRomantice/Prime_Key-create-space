@@ -7,6 +7,7 @@ import SocialLink from "../computed/SocialLink";
 import PixelTransition from "../computed/reactbits/PixelTransition";
 import { GithubIcon, QQIcon, GiteeIcon } from "../computed/Icons";
 import resMethod from "../tools/resMethod";
+import RotatingText from "../computed/reactbits/RotatingText.tsx";
 
 export default function About() {
 
@@ -62,7 +63,7 @@ export default function About() {
 
   return (
     // 防止横向溢出
-    <div className="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen overflow-x-hidden">
+    <div className={"bg-gradient-to-br"}>
       {/* 使用 max-w-screen-2xl 限制最大宽度 */}
       <main className="max-w-screen-2xl mx-auto w-full py-24 px-4">
         {/* 头像区块 */}
@@ -108,7 +109,7 @@ export default function About() {
                       color: "#ffffff",
                     }}
                   >
-                    Hum?
+                    Hi ~
                   </p>
                 </div>
               }
@@ -141,8 +142,11 @@ export default function About() {
               <span className="bg-gradient-to-r from-amber-600 to-amber-400 bg-clip-text text-transparent">
                 PK
               </span>
-              <span className="xl:visible invisible mx-4 text-gray-300">|</span>
-              <span className="xl:visible invisible text-gray-600">Digital nomads</span>
+              <br />
+              <span className=" text-gray-600">
+                
+                Idealist
+              </span>
             </motion.h1>
 
             <motion.div

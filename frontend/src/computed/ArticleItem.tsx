@@ -82,7 +82,7 @@ export default function ArticleItem() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8">
+    <div className="max-w-3xl min-h-screen mx-auto px-4 py-8 ">
       {/* 文章内容区块 */}
       <article className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-200/80 mb-12">
         <h1 className="text-4xl font-bold text-gray-800 mb-6">{artConnect.title}</h1>
@@ -96,9 +96,6 @@ export default function ArticleItem() {
           👀 {artConnect.views}
         </span>
         <br />
-        <span className='text-gray-400 leading-relaxed space-y-6'>
-          📝 {artConnect.excerpt}
-        </span>
       <Markdown connect={artConnect.connect}></Markdown>
       </article>
 
