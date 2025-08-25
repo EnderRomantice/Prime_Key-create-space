@@ -7,7 +7,6 @@ import SocialLink from "../computed/SocialLink";
 import PixelTransition from "../computed/reactbits/PixelTransition";
 import { GithubIcon, QQIcon, GiteeIcon } from "../computed/Icons";
 import resMethod from "../tools/resMethod";
-import RotatingText from "../computed/reactbits/RotatingText.tsx";
 
 export default function About() {
 

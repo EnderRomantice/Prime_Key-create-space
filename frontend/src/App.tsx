@@ -1,20 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState} from "react";
 import Tabbar from "./computed/Tabbar.tsx";
 import Master from "./pages/Master.tsx";
 import Articles from "./pages/Articles.tsx";
 import ArticleItem from "./computed/ArticleItem.tsx";
 import Projects from "./pages/Projects.tsx";
 import About from "./pages/About.tsx";
-import Aurora from "./computed/reactbits/Aurora.tsx";
 import Life from "./pages/Life.tsx";
 import "./output.css";
 import "./font.css";
 import { backColorList } from "./tools/backColorList"
 
 
-function AouterMotion({ children, keyProp }) {
+function AouterMotion({ children, keyProp }: {children: ReactNode, keyProp: string}) {
   return (
     <motion.div 
       key={keyProp} 
@@ -33,7 +32,7 @@ function AouterMotion({ children, keyProp }) {
 
 export default function App() {
 
-  function getRandomInt(min, max) {
+  function getRandomInt(min: number, max: number) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;

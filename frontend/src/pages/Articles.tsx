@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import resMethod from "../tools/resMethod";
 import { motion } from "framer-motion"; 
 
-export default function Articles({backColor}) {
+export default function Articles() {
   const [articles, setArticles] = useState([
     {
       id: 0,
