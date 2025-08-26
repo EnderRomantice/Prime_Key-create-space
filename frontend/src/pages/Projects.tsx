@@ -2,7 +2,7 @@ import "../output.css";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import resMethod from "../tools/resMethod";
-import { motion } from "framer-motion"; 
+import { motion } from "framer-motion";
 
 export default function Projects() {
   interface Project {
@@ -10,9 +10,10 @@ export default function Projects() {
     title: string;
     descript: string;
     tech: string[];
-    progress: string | number; 
+    progress: string | number;
     status: string;
     img: string;
+    url: string;
   }
 
   const [projects, setProjects] = useState<Project[]>([
@@ -24,6 +25,7 @@ export default function Projects() {
       progress: "Loading..",
       status: "Loading..",
       img: "",
+      url: "",
     },
   ]);
 
@@ -87,92 +89,77 @@ export default function Projects() {
                   duration: 0.4,
                   delay: index * 0.15, // 每个卡片延迟 0.15s
                 }}
-
                 className="group bg-white/90 backdrop-blur-sm rounded-[1.5rem] p-10 border-2 border-gray-200/80 hover:border-amber-200 transition-all duration-300 hover:shadow-2xl"
               >
-                <div className="space-y-8">
-                  {/* 项目封面 */}
-                  <div className="relative rounded-2xl overflow-hidden aspect-video">
-                    <img
-                      src={project.img}
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      onError={(e) => {
-                        e.currentTarget.src = "https://via.placeholder.com/600x338?text=No+Image";
-                      }}
-                    />
-                    <div className="absolute bottom-4 right-4 bg-white/90 px-4 py-1.5 rounded-full text-sm shadow-sm">
-                      {project.status === "开发中" ? (
-                        <span className="text-amber-600">🚧 {project.status}</span>
-                      ) : (
-                        <span className="text-emerald-600">✅ {project.status}</span>
-                      )}
+                <Link to={project.url}>
+                  <div className="space-y-8">
+                    {/* 项目封面 */}
+                    <div className="relative rounded-2xl overflow-hidden aspect-video">
+                      <img
+                        src={project.img}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        onError={(e) => {
+                          e.currentTarget.src =
+                            "https://via.placeholder.com/600x338?text=No+Image";
+                        }}
+                      />
+                      <div className="absolute bottom-4 right-4 bg-white/90 px-4 py-1.5 rounded-full text-sm shadow-sm">
+                        {project.status === "开发中" ? (
+                          <span className="text-amber-600">
+                            🚧 {project.status}
+                          </span>
+                        ) : (
+                          <span className="text-emerald-600">
+                            ✅ {project.status}
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  </div>
 
-                  {/* 内容区块 */}
-                  <div className="space-y-6">
-                    <div className="flex items-center justify-between">
-                      <h2 className="text-2xl font-bold text-gray-800 group-hover:text-amber-600 transition-colors">
-                        {project.title}
-                      </h2>
-                      <div className="flex space-x-3">
-                        <Link
-                          to={`/projects/${project.id}`}
-                          className="p-3 bg-amber-50 text-amber-600 rounded-xl hover:bg-amber-100 transition-colors"
-                        >
-                          <svg
-                            className="w-5 h-5"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
+                    {/* 内容区块 */}
+                    <div className="space-y-6">
+                      <div className="flex items-center justify-between">
+                        <h2 className="text-2xl font-bold text-gray-800 group-hover:text-amber-600 transition-colors">
+                          {project.title}
+                        </h2>
+                      </div>
+
+                      {/* 进度条 */}
+                      <div className="space-y-3">
+                        <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-gradient-to-r from-amber-400 to-amber-500 transition-all duration-500"
+                            style={{
+                              width: `${typeof project.progress === "number" ? project.progress : 0}%`,
+                            }}
+                          />
+                        </div>
+                        <div className="flex justify-between text-sm text-gray-600">
+                          <span>Progress</span>
+                          <span>{project.progress}%</span>
+                        </div>
+                      </div>
+
+                      {/* 项目描述 */}
+                      <p className="text-gray-600 leading-relaxed">
+                        {project.descript}
+                      </p>
+
+                      {/* 技术栈标签 */}
+                      <div className="flex flex-wrap gap-3">
+                        {project.tech.map((tech, idx) => (
+                          <span
+                            key={idx}
+                            className="px-4 py-1.5 bg-gray-100 text-gray-600 rounded-full text-sm hover:bg-gray-200 transition-colors"
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="M13 5l7 7-7 7M5 5l7 7-7 7"
-                            />
-                          </svg>
-                        </Link>
-                       
+                            #{tech}
+                          </span>
+                        ))}
                       </div>
-                    </div>
-
-                    {/* 进度条 */}
-                    <div className="space-y-3">
-                      <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-gradient-to-r from-amber-400 to-amber-500 transition-all duration-500"
-                          style={{
-                            width: `${typeof project.progress === "number" ? project.progress : 0}%`,
-                          }}
-                        />
-                      </div>
-                      <div className="flex justify-between text-sm text-gray-600">
-                        <span>Progress</span>
-                        <span>{project.progress}%</span>
-                      </div>
-                    </div>
-
-                    {/* 项目描述 */}
-                    <p className="text-gray-600 leading-relaxed">
-                      {project.descript}
-                    </p>
-
-                    {/* 技术栈标签 */}
-                    <div className="flex flex-wrap gap-3">
-                      {project.tech.map((tech, idx) => (
-                        <span
-                          key={idx}
-                          className="px-4 py-1.5 bg-gray-100 text-gray-600 rounded-full text-sm hover:bg-gray-200 transition-colors"
-                        >
-                          #{tech}
-                        </span>
-                      ))}
                     </div>
                   </div>
-                </div>
+                </Link>
               </motion.article>
             ))
           )}
