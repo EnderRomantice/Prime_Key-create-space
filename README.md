@@ -1,9 +1,15 @@
 ### Prime_Key-create-space
 
-![页面展示](https://gitee.com/rustlove/Prime_Key-create-space/raw/master/backend/assets/Master.png)
-![页面展示2](https://gitee.com/rustlove/Prime_Key-create-space/raw/master/backend/assets/About.png)
+
+
+### ![页面展示](https://github.com/EnderRomantice/Prime_Key-create-space)
 
 😉 **该项目已上线：rustlove.cn**
+
+### 🎨 设计原则 
+
+- 保证用户阅读体验，路径索引简单清晰，底部tabbar更符合直觉。
+- 毛玻璃仿苹果UI，现代感设计比例。 
 
 #### 📕 使用方法
 
@@ -46,6 +52,7 @@ Markdown渲染 + 代码高亮: react-markdown, prism-react-renderer
 
 Python + FastAPI + SQLite
 
-#### 😚 为什么选择SQLite?不怕锁吗？
+#### ❓ 为什么选择SQLite?
 
-使用aiosqlite赋予SQLite多线程能力，增加了连接池来避免触发文件锁问题，
+使用aiosqlite赋予SQLite异步能力，增加了连接池来避免触发文件锁问题。
+
