@@ -9,8 +9,8 @@ import Projects from "./pages/Projects.tsx";
 import About from "./pages/About.tsx";
 import Life from "./pages/Life.tsx";
 import "./output.css";
-import "./font.css";
 import { backColorList } from "./tools/backColorList"
+
 
 
 function AouterMotion({ children, keyProp }: {children: ReactNode, keyProp: string}) {
@@ -39,18 +39,18 @@ export default function App() {
 }
 
 
+  const randomIndex = getRandomInt(0, backColorList.length - 1);
 
 
 
- let backColor = backColorList[getRandomInt(0,4)]
   return (
     <Router>
       {/* 背景渲染 */}
 
-
+    {backColorList[randomIndex]}
       
       {/* 主内容区 - 为底部Tabbar留出空间 */}
-      <main className={"min-h-full pb-20 bg-gradient-to-br text-white overflow-x-hidden bg-black-100" + backColor}>
+      <main className={"min-h-full pb-20 bg-gradient-to-br text-white overflow-x-hidden "}>
         <AnimatePresence mode="wait"> {/* 使用 AnimatePresence 包裹 Routes */}
           <Routes location={window.location} key={window.location.pathname}>
             <Route path="*" element={

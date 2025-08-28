@@ -8,7 +8,7 @@ import DecryptedText from "../computed/reactbits/DecryptedText.tsx";
 
 export default function Master() {
   const [masterData, setMasterData] = useState({
-    tips: "野钓记",
+    tips: "Loading...",
     articleCount: 3,
     projectCount: 1,
     readCount: 0,
@@ -20,8 +20,8 @@ export default function Master() {
     {
       id: 0,
       name: "Loading..",
-      title: "神秘的存在",
-      descript: "她来自North",
+      title: "Loading..",
+      descript: "Loading..",
       img: "Loading...",
       contact: "",
       contact_type: "email",
@@ -181,13 +181,13 @@ export default function Master() {
                 <div className="text-2xl font-bold text-amber-600">
                   {masterData.readCount}
                 </div>
-                <div className="text-sm text-gray-500">total read</div>
+                <div className="text-sm text-gray-500">read</div>
               </div>
               <div className="p-4 bg-gray-50 rounded-xl hover:bg-white transition-colors">
                 <div className="text-2xl font-bold text-purple-600">
                   {masterData.lifeCount}
                 </div>
-                <div className="text-sm text-gray-500">life experience</div>
+                <div className="text-sm text-gray-500">life</div>
               </div>
               <div className="p-4 bg-gray-50 rounded-xl hover:bg-white transition-colors">
                 <div className="text-2xl font-bold text-emerald-600">
@@ -208,37 +208,33 @@ export default function Master() {
             </h2>
           </div>
 
-          <div className="space-y-6 lg:flex flex-wrap justify-around">
+          <div className="space-y-6 ">
             {friendList.map((friend: any) => (
-              <a href={friend.contact}>
-                <div
-                  key={friend.id}
-                  className="group p-6 m-1 rounded-xl border border-gray-200/80 hover:border-amber-200 transition-all duration-300 hover:shadow-lg"
-                >
-                  <div className="flex items-start">
-                    <img
-                      src={friend.img}
-                      className="w-15 h-15 rounded-full mr-4"
-                      alt={friend.name}
-                    />
-                    <div>
-                      <h3 className="text-lg font-medium text-gray-800 group-hover:text-amber-600 transition-colors">
-                        {friend.name}
-                      </h3>
-                      <p className="text-gray-600 mt-2 line-clamp-2">
-                        {friend.title}
-                      </p>
-                      <p className="text-gray-600 mt-2 line-clamp-2">
-                        {friend.descript}
-                      </p>
-                      <div className="flex items-center mt-4 space-x-4 text-sm text-gray-500">
-                        {friend.contact_type}: {friend.contact}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            ))}
+  <a href={friend.contact} key={friend.id}>
+    <div className="group p-6 m-2 rounded-xl border border-gray-300/80 hover:border-amber-200 transition-all duration-300 hover:shadow-lg">
+      <div className="flex items-start gap-4"> 
+        <img
+          src={friend.img}
+          className="w-15 h-15 rounded-full flex-shrink-0"
+          alt={friend.name}
+        />
+        <div className="flex-1 min-w-0"> 
+          <h3 className="text-lg font-medium text-gray-800 group-hover:text-amber-600 transition-colors truncate">
+            {friend.name}
+          </h3>
+          <p className="text-gray-600 mt-2 truncate">{friend.title}</p>
+          <p className="text-gray-600 mt-2 line-clamp-2"> 
+            {friend.descript}
+          </p>
+          <div className="flex items-center mt-4 space-x-4 text-sm text-gray-500">
+            <span>{friend.contact_type}:</span>
+            <span className="truncate">{friend.contact}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+))}
           </div>
         </section>
       </main>
