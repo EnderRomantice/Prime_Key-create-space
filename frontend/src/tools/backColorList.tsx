@@ -16,7 +16,8 @@ export const backColorList = [
   <PrismaticBurst />,
   <Iridescence />,
   <LiquidChrome />,
-  <LetterGlitch   glitchSpeed={50}
+  <LetterGlitch   
+  glitchSpeed={50}
   centerVignette={true}
   outerVignette={false}
   smooth={true}
