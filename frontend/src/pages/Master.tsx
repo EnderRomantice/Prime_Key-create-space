@@ -208,10 +208,10 @@ export default function Master() {
             </h2>
           </div>
 
-          <div className="space-y-6 ">
+          <div className="space-y-6 lg:flex flex-wrap justify-around">
             {friendList.map((friend: any) => (
   <a href={friend.contact} key={friend.id}>
-    <div className=" group p-6 m-2 rounded-xl border-2 border-gray-300/80 hover:border-amber-200 transition-all duration-300">
+    <div className="group p-6 m-2 transition-all duration-300">
       <div className="flex items-start gap-4"> 
         <img
           src={friend.img}

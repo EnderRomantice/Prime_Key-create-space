@@ -83,7 +83,7 @@ export default function Articles() {
                     </p>
                   </div>
 
-                  <div className="flex justify-between items-center mt-auto pt-4 border-t border-gray-100">
+                  <div className="flex justify-between items-center mt-auto pt-4  border-gray-100">
                     <div className="flex items-center space-x-4 text-sm text-gray-500">
                       <span>👀 {article.views}</span>
                     </div>

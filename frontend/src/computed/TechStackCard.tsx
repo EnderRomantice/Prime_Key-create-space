@@ -7,16 +7,16 @@ export default function TechStackCard() {
     interface Technology {
         name: string;
         level: number;
-        category: 'frontend' | 'backend' | 'styling' | 'database' | 'build';
+        category: 'frontend' | 'backend' | 'database' | 'build';
     }
 
     const technologies: Technology[] = [
       { name: "React.js", level: 41, category: 'frontend' },
       { name: "Vue.js", level: 30, category: 'frontend' },
       { name: "TypeScript", level: 50, category: 'frontend' },
-      { name: "Tailwind CSS", level: 40, category: 'styling' },
       { name: "Python", level: 60, category: 'backend' },
       { name: "Node.js", level: 50, category: 'backend' },
+      { name: "Go", level: 30, category: 'backend' },
       { name: "Rust", level: 10, category: 'backend' },
       { name: "SQL", level: 50, category: 'database' },
       { name: "Vite", level: 30, category: 'build' },
@@ -26,7 +26,6 @@ export default function TechStackCard() {
       switch(category) {
         case 'frontend': return 'bg-blue-500';
         case 'backend': return 'bg-green-500';
-        case 'styling': return 'bg-cyan-400';
         case 'database': return 'bg-purple-400';
         case 'build' : return 'bg-amber-500';
         default: return 'bg-amber-500';
@@ -84,7 +83,6 @@ export default function TechStackCard() {
         <div className="mt-8 pt-6 border-t border-gray-200/50 flex flex-wrap gap-6">
           <LegendItem color="bg-blue-500" label="fontend" />
           <LegendItem color="bg-green-500" label="backend" />
-          <LegendItem color="bg-cyan-400" label="style" />
           <LegendItem color="bg-purple-400" label="database" />
           <LegendItem color="bg-amber-500" label="bulid" />
         </div>
