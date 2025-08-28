@@ -211,7 +211,7 @@ export default function Master() {
           <div className="space-y-6 ">
             {friendList.map((friend: any) => (
   <a href={friend.contact} key={friend.id}>
-    <div className="group p-6 m-2 rounded-xl border border-gray-300/80 hover:border-amber-200 transition-all duration-300 hover:shadow-lg">
+    <div className=" group p-6 m-2 rounded-xl border-2 border-gray-300/80 hover:border-amber-200 transition-all duration-300">
       <div className="flex items-start gap-4"> 
         <img
           src={friend.img}
