@@ -8,7 +8,6 @@ import ArticleItem from "./computed/ArticleItem.tsx";
 import Projects from "./pages/Projects.tsx";
 import About from "./pages/About.tsx";
 import Life from "./pages/Life.tsx";
-import "./output.css";
 import { backColorList } from "./tools/backColorList"
 
 

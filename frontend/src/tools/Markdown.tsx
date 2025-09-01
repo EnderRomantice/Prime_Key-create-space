@@ -64,6 +64,7 @@ const Markdown: React.FC<MarkdownProps> = ({ connect }) => {
         </a>
       );
     },
+    
     table({ children }) {
       return (
         <div style={{ overflowX: 'auto', margin: '1em 0' }}>
@@ -87,6 +88,7 @@ const Markdown: React.FC<MarkdownProps> = ({ connect }) => {
         </th>
       );
     },
+    
     td({ children }) {
       return (
         <td
@@ -100,7 +102,7 @@ const Markdown: React.FC<MarkdownProps> = ({ connect }) => {
       );
     },
 
-    // 👉 修复：code 组件
+
     code({ inline, className, children }: CodeProps) {
       const match = /language-(\w+)/.exec(className || '');
       const language = match ? match[1] : 'text';

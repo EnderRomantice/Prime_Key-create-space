@@ -1,4 +1,3 @@
-import "../output.css";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Tabbar() {

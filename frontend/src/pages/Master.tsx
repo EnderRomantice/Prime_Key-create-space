@@ -1,4 +1,3 @@
-import "../output.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import resMethod from "../tools/resMethod.ts";
@@ -206,6 +205,7 @@ export default function Master() {
               <span className="mr-2"></span>
               Friend links
             </h2>
+            Add
           </div>
 
           <div className="space-y-6 lg:flex flex-wrap justify-around">
