@@ -1,4 +1,4 @@
-# servers/articles.py
+from datetime import datetime
 
 from tools.link_db import get_db_connection
 from tools.select_all import getSelectAll, getSelectAllByID
@@ -14,7 +14,7 @@ async def getArticleByID(id: int) -> dict:
 
 
 async def getArticleInfoByID(id: int) -> dict:
-    info = await getSelectAllByID('artConnect', id)
+    info = await getSelectAllByID('artContent', id)
     return info[0]
 
 
@@ -31,28 +31,28 @@ async def addArticleView(id: int) -> None:
     finally:
         await db.close()
 
-
-
-async def addArticleLike(id: int) -> None:
+async def getAllComments(id: str) -> list:
     db = await get_db_connection()
     try:
-        await db.execute('UPDATE artConnect SET likes = likes + 1 WHERE id = ?', (id,))
-        await db.commit()
-    except Exception as e:
-        await db.rollback()
-        raise e
+
+        async with db.execute(f"SELECT * FROM artComment WHERE art_id = ?", (id,)) as cursor:
+            rows = await cursor.fetchall()
+            return [dict(row) for row in rows]
+    except:
+        print(f"获取评论失败")
+        raise
     finally:
         await db.close()
 
+async def addComment(name: str, avatar: str, content: str, art_id: int):
 
-
-async def removeArticleLike(id: int) -> None:
     db = await get_db_connection()
     try:
-        await db.execute('UPDATE artConnect SET likes = likes - 1 WHERE id = ?', (id,))
+        current_date = datetime.now().strftime('%Y.%m.%d %H:%M:%S')
+        await db.execute("INSERT INTO artComment (username, avatar, content, date, art_id) VALUES (?, ?, ?, ?, ?) ", (name, avatar, content, current_date, art_id))
         await db.commit()
-    except Exception as e:
-        await db.rollback()
-        raise e
+        return {"msg": "评论已提交"}
+    except:
+        raise
     finally:
         await db.close()

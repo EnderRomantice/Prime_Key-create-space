@@ -8,6 +8,7 @@ import ArticleItem from "./computed/ArticleItem.tsx";
 import Projects from "./pages/Projects.tsx";
 import About from "./pages/About.tsx";
 import Life from "./pages/Life.tsx";
+import Login from "./pages/Login.tsx"
 import { backColorList } from "./tools/backColorList"
 
 
@@ -73,6 +74,10 @@ export default function App() {
             <Route path="/articles/:id" element={
               <AouterMotion keyProp="articleItem" children={<ArticleItem />} />
             } />
+            <Route path="/login" element={
+              <AouterMotion keyProp="articleItem" children={<Login />} />
+            } />
+            
           </Routes>
         </AnimatePresence>
       </main>

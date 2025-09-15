@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import articles, life, project, master, about
+from routers import articles, life, project, master, about, login
 from tools.access_logs import DatabaseLogMiddleware
 
 app = FastAPI()
@@ -10,6 +10,7 @@ app.include_router(life.router)
 app.include_router(project.router)
 app.include_router(master.router)
 app.include_router(about.router)
+app.include_router(login.router)
 
 
 origins = [
