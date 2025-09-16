@@ -4,11 +4,21 @@ import { useParams } from "react-router-dom";
 import Markdown from "../tools/Markdown";
 
 export default function ArticleItem() {
+
+  const GITHUB_URL = "https://github.com/login/oauth/authorize?client_id=Ov23liinjTY2DRWkuYqW"
+
+  // const GITHUB_DEMO_URL = "https://github.com/login/oauth/authorize?client_id=e936bbcbe329278df4e1df024c9515d5f445d1df"
+
+  const GITEE_URL = "https://gitee.com/oauth/authorize?client_id=01b84a7a90d75b0b09e13a0062251b33710c896a7254fb9f0aaf7262c60ac2bb&redirect_uri=https://rustlove.cn/login&response_type=code"
+
+  // const GITEE_DEMO_URL = "https://gitee.com/oauth/authorize?client_id=405919d7eef4b20affdc4dc8704b49e62489f50fc75d9ca46d2a46b1567e2e77&redirect_uri=http://localhost:5173/login&response_type=code"
+
   const params = useParams();
 
   const [avatar, setAvatar] = useState<string | null>("");
 
   const [name, setName] = useState<string | null>("");
+
 
   // 文章详情状态
   const [artConnect, setConnect] = useState({
@@ -55,15 +65,13 @@ export default function ArticleItem() {
       avatar: avatar,
       content: nowComment,
       art_id: params.id,
-    }
+    };
     console.log(data);
     await resMethod(`/articles/comment`, "POST", data);
 
     setReloadComments(!reloadComments);
 
     setNowComment("");
-
-
   };
 
   // 加载状态
@@ -168,45 +176,60 @@ export default function ArticleItem() {
             />
 
             {!name ? (
-              <div
-              onClick={() => {
-                localStorage.setItem("callback", params.id || "1");
-                setTimeout(() => {
-                  window.location.href = "https://github.com/login/oauth/authorize?client_id=Ov23liinjTY2DRWkuYqW"
-                }, 100);
-                
-              }}
-              className="flex items-center justify-around bg-black p-auto text-center rounded-md text-white px-4 py-2 text-sm hover:bg-green-500 transition-colors w-50">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+              <div className="flex md:justify-between justify-center items-center flex-wrap bg-amber-100 p-4 rounded-md w-full">
+                <div
+                  onClick={() => {
+                    localStorage.setItem("callback", params.id || "1");
+                    setTimeout(() => {
+                      window.location.href = GITHUB_URL;
+                    }, 100);
+                  }}
+                  className="flex items-center justify-around m-2 bg-black p-auto text-center rounded-md text-white px-4 py-2 text-sm hover:bg-white hover:text-black transition-colors w-50"
                 >
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    className=""
+                  >
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                  </svg>
+                  Login in Github
+                </div>
 
-                
-                  Use Github Submit
-                
+                <div
+                onClick={() => {
+                    localStorage.setItem("callback", params.id || "1");
+                    setTimeout(() => {
+                      window.location.href = GITEE_URL;
+                    }, 100);
+                  }}
+                 className="flex items-center justify-around m-2 bg-white p-auto text-center rounded-md text-black px-4 py-2 text-sm hover:bg-black hover:text-white transition-colors w-50">
+                    <svg  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1459" xmlnsXlink="http://www.w3.org/1999/xlink" width="24" height="24"><path d="M512 1024C229.222 1024 0 794.778 0 512S229.222 0 512 0s512 229.222 512 512-229.222 512-512 512z m259.149-568.883h-290.74a25.293 25.293 0 0 0-25.292 25.293l-0.026 63.206c0 13.952 11.315 25.293 25.267 25.293h177.024c13.978 0 25.293 11.315 25.293 25.267v12.646a75.853 75.853 0 0 1-75.853 75.853h-240.23a25.293 25.293 0 0 1-25.267-25.293V417.203a75.853 75.853 0 0 1 75.827-75.853h353.946a25.293 25.293 0 0 0 25.267-25.292l0.077-63.207a25.293 25.293 0 0 0-25.268-25.293H417.152a189.62 189.62 0 0 0-189.62 189.645V771.15c0 13.977 11.316 25.293 25.294 25.293h372.94a170.65 170.65 0 0 0 170.65-170.65V480.384a25.293 25.293 0 0 0-25.293-25.267z" fill="#C71D23" p-id="1460"></path></svg>
+                  Login in Gitee
+                </div>
+
+                  
               </div>
             ) : (
               <div className="flex items-center justify-cente w-full">
                 <div className="flex space-x-6 items-center w-full">
                   <img
-                    src={avatar ? avatar : "https://via.placeholder.com/150x150"}
+                    src={
+                      avatar ? avatar : "https://via.placeholder.com/150x150"
+                    }
                     className="align-middle rounded-full w-15 h-15"
                   />
                   <div className="align-middle flex flex-col space-x-2 w-full">
-                      <span>{name}</span>
-                     <span className="text-gray-500">想说点什么？</span>
+                    <span>{name}</span>
+                    <span className="text-gray-500">想说点什么？</span>
                   </div>
-
                 </div>
 
                 <div className="w-full flex justify-end">

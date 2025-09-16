@@ -75,7 +75,7 @@ export default function App() {
               <AouterMotion keyProp="articleItem" children={<ArticleItem />} />
             } />
             <Route path="/login" element={
-              <AouterMotion keyProp="articleItem" children={<Login />} />
+              <AouterMotion keyProp="login" children={<Login />} />
             } />
             
           </Routes>
