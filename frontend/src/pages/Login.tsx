@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import resMethod from "../tools/resMethod";
 
-export default function Login() {
+export default function Login({type}: {type: string}) {
   const navigate = useNavigate();
   const location = useLocation();
   let callback = localStorage.getItem("callback");
@@ -21,7 +21,6 @@ export default function Login() {
       try {
         const searchParams = new URLSearchParams(location.search);
         const code = searchParams.get("code");
-        const from = searchParams.get("from");
 
         if (!code) {
           console.error("URL 中没有 code:", location.search);
@@ -30,17 +29,13 @@ export default function Login() {
         }
 
         let user;
-        if (from === "github") {
 
-           user = await resMethod(`/login/github?code=${code}`, "GET");
-
-        } else {
-
-           user = await resMethod(`/login/gitee?code=${code}`, "GET");
+        const login_list: Record<string, string> = {
+          "github": `/login/github?code=${code}`,
+          "gitee": `/login/gitee?code=${code}`,
         }
 
-
-
+           user = await resMethod(login_list[type], "GET");
 
          if (user.username || user.avatar) {
           console.log("登录成功:", user);

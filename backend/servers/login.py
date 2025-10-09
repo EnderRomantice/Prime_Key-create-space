@@ -88,7 +88,7 @@ async def giteeCallback(code: str):
                 "client_id": "01b84a7a90d75b0b09e13a0062251b33710c896a7254fb9f0aaf7262c60ac2bb",
                 "client_secret": "38f8bca5079034564535952fff5dbf436ea1bc014ba828628037bb50213ed5d6",
                 "code": code,
-                "redirect_uri": "https://rustlove.cn/login"
+                "redirect_uri": "https://rustlove.blog/login/gitee"
             }
 
     DATA_DEMO = {

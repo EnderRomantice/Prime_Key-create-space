@@ -9,7 +9,7 @@ export default function ArticleItem() {
 
   // const GITHUB_DEMO_URL = "https://github.com/login/oauth/authorize?client_id=e936bbcbe329278df4e1df024c9515d5f445d1df"
 
-  const GITEE_URL = "https://gitee.com/oauth/authorize?client_id=01b84a7a90d75b0b09e13a0062251b33710c896a7254fb9f0aaf7262c60ac2bb&redirect_uri=https://rustlove.cn/login&response_type=code"
+  const GITEE_URL = "https://gitee.com/oauth/authorize?client_id=01b84a7a90d75b0b09e13a0062251b33710c896a7254fb9f0aaf7262c60ac2bb&redirect_uri=https://rustlove.blog/login/gitee&response_type=code"
 
   // const GITEE_DEMO_URL = "https://gitee.com/oauth/authorize?client_id=405919d7eef4b20affdc4dc8704b49e62489f50fc75d9ca46d2a46b1567e2e77&redirect_uri=http://localhost:5173/login&response_type=code"
 

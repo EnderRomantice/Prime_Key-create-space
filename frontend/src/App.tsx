@@ -74,8 +74,11 @@ export default function App() {
             <Route path="/articles/:id" element={
               <AouterMotion keyProp="articleItem" children={<ArticleItem />} />
             } />
-            <Route path="/login" element={
-              <AouterMotion keyProp="login" children={<Login />} />
+            <Route path="/login/github" element={
+              <AouterMotion keyProp="login_github" children={<Login type="github" />} />
+            } />
+            <Route path="/login/gitee" element={
+              <AouterMotion keyProp="login_gitee" children={<Login type="gitee" />} />
             } />
             
           </Routes>
