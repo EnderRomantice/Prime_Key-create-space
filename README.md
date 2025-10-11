@@ -1,12 +1,8 @@
 ### Prime_Key-create-space
 
-![页面展示](https://rustlove.cn/file/master.webp)
+![页面展示](https://rustlove.blog/files/photo/master.webp)
 
-![页面展示](https://rustlove.cn/file/life.webp)
-
-![页面展示](https://rustlove.cn/file/about.webp)
-
-😉 **该项目已上线：rustlove.cn**
+😉 **该项目已上线：rustlove.blog**
 
 #### 🎨 设计原则
 
@@ -48,7 +44,7 @@
 
 Markdown渲染 + 代码高亮: react-markdown, prism-react-renderer
 
-网络请求: fetch
+网络请求: fetch + useQuery
 
 ##### 后端
 
