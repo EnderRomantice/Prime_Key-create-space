@@ -16,7 +16,7 @@ export default function Articles() {
     return await resMethod("/articles/list", "GET");
   };
 
-  const { data, error, isFetching } = useQuery({
+  const { data } = useQuery({
     queryKey: ["articles"],
     queryFn: resArts,
     refetchInterval: 1000 * 60 * 5, // 每 5 分钟刷新一次

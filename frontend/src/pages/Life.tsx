@@ -16,7 +16,7 @@ export default function Life() {
     return await resMethod("/life/list", "GET");
   };
 
-  const { data, error, isFetching } = useQuery({
+  const { data } = useQuery({
     queryKey: ["lifes"],
     queryFn: resLifes,
     staleTime: 1000 * 60 * 5, // 5 minutes
