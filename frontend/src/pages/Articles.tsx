@@ -1,27 +1,26 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import resMethod from "../tools/resMethod";
-import { motion } from "framer-motion"; 
+import { motion } from "framer-motion";
 
 export default function Articles() {
-  const [articles, setArticles] = useState([
-    {
-      id: 0,
-      title: "Loading...",
-      excerpt: "Loading...",
-      tag: "Loading...",
-      date: "Loading...",
-      views: "Loading...",
-    },
-  ]);
+    interface artItem {
+        id: number;
+        title: string;
+        excerpt: string;
+        tag: string;
+        date: string;
+        views: string;
+    }
+  const resArts = async () => {
+    return await resMethod("/articles/list", "GET");
+  };
 
-  useEffect(() => {
-    resMethod(`/articles/list`, "GET").then((res) => {
-      setArticles(res.data || res); 
-    }).catch(() => {
-      setArticles([]); 
-    });
-  }, []);
+  const { data, error, isFetching } = useQuery({
+    queryKey: ["articles"],
+    queryFn: resArts,
+    refetchInterval: 1000 * 60 * 5, // 每 5 分钟刷新一次
+  });
 
   return (
     <div className={"min-h-screen"}>
@@ -49,44 +48,46 @@ export default function Articles() {
 
         {/* 文章网格布局容器 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {articles.length === 0 ? (
+          {data === undefined ? (
             <p className="text-center py-8 text-gray-500 col-span-3">
               暂无文章
             </p>
           ) : (
-            articles.map((article, index) => (
+            data.map((art: artItem, index: number) => (
               <motion.article
-                key={article.id}
+                key={art.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: 0.4, 
-                  delay: index * 0.1 // 每个卡片依次出现
+                transition={{
+                  duration: 0.4,
+                  delay: index * 0.1, // 每个卡片依次出现
                 }}
                 className="group bg-white/90 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/80 hover:border-amber-200 transition-all duration-300 hover:shadow-xl flex flex-col h-full"
               >
-                <Link to={`/articles/${article.id}`} className="flex flex-col h-full">
+                <Link
+                  to={`/articles/${art.id}`}
+                  className="flex flex-col h-full"
+                >
                   <div className="flex items-center justify-between mb-4">
                     <span className="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">
-                      {article.tag}
+                      {art.tag}
                     </span>
-                    <span className="text-gray-500 text-sm">📅 {article.date}</span>
+                    <span className="text-gray-500 text-sm">📅 {art.date}</span>
                   </div>
 
                   <div className="flex-grow">
                     <h2 className="text-xl font-semibold text-gray-800 mb-3 group-hover:text-amber-600 transition-colors line-clamp-2">
-                      {article.title}
+                      {art.title}
                     </h2>
                     <p className="text-gray-600 mb-4 text-sm line-clamp-3">
-                      {article.excerpt}
+                      {art.excerpt}
                     </p>
                   </div>
 
                   <div className="flex justify-between items-center mt-auto pt-4  border-gray-100">
                     <div className="flex items-center space-x-4 text-sm text-gray-500">
-                      <span>👀 {article.views}</span>
+                      <span>👀 {art.views}</span>
                     </div>
-
                   </div>
                 </Link>
               </motion.article>

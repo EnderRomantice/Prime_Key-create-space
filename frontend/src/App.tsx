@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Tabbar from "./computed/Tabbar.tsx";
 import Master from "./pages/Master.tsx";
 import Articles from "./pages/Articles.tsx";
@@ -41,7 +42,7 @@ export default function App() {
 
   const randomIndex = getRandomInt(0, backColorList.length - 1);
 
-
+ const queryClient = new QueryClient();
 
   return (
     <Router>
@@ -52,6 +53,7 @@ export default function App() {
       {/* 主内容区 - 为底部Tabbar留出空间 */}
       <main className={"min-h-full pb-20 bg-gradient-to-br text-white overflow-x-hidden "}>
         <AnimatePresence mode="wait"> {/* 使用 AnimatePresence 包裹 Routes */}
+          <QueryClientProvider client={queryClient}>
           <Routes location={window.location} key={window.location.pathname}>
             <Route path="*" element={
               <AouterMotion keyProp="master" children={<Master/>} />
@@ -82,6 +84,7 @@ export default function App() {
             } />
             
           </Routes>
+          </QueryClientProvider>
         </AnimatePresence>
       </main>
 

@@ -1,6 +1,5 @@
 import Aurora from "../computed/reactbits/background/Aurora"
 import Galaxy from "../computed/reactbits/background/Galaxy"
-import FaultyTerminal from "../computed/reactbits/background/FaultyTerminal"
 import Iridescence from "../computed/reactbits/background/Iridescence"
 import LetterGlitch from "../computed/reactbits/background/LetterGlitch"
 import LiquidChrome from "../computed/reactbits/background/LiquidChrome"
@@ -9,7 +8,6 @@ import LiquidChrome from "../computed/reactbits/background/LiquidChrome"
 export const backColorList = [
   <Aurora />,
   <Galaxy />,
-  <FaultyTerminal />,
   <Iridescence />,
   <LiquidChrome />,
   <LetterGlitch   
