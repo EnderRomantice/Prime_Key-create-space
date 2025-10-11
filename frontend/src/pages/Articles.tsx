@@ -20,6 +20,7 @@ export default function Articles() {
     queryKey: ["articles"],
     queryFn: resArts,
     refetchInterval: 1000 * 60 * 5, // 每 5 分钟刷新一次
+    staleTime: 1000 * 60 * 5, // 5 分钟内数据过期
   });
 
   return (
