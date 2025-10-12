@@ -169,12 +169,12 @@ export default function About() {
                 variants={itemVariants}
               >
                 <SocialLink
-                  href="https://rustlove.cn/file/qq.jpg"
+                  href="https://rustlove.blog/files/photo/qq.jpg"
                   icon={<QQIcon />}
                   label="QQ"
                 />
                 <SocialLink
-                  href="https://gitee.com/Prime_Key"
+                  href="https://gitee.com/rustlove"
                   icon={<GiteeIcon />}
                   label="Gitee"
                 />
