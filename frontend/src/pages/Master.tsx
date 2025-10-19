@@ -4,7 +4,6 @@ import resMethod from "../tools/resMethod.ts";
 import TextType from "../computed/reactbits/TextType.tsx";
 import DecryptedText from "../computed/reactbits/DecryptedText.tsx";
 
-
 export default function Master() {
   const [masterData, setMasterData] = useState({
     tips: "Loading...",
@@ -58,7 +57,6 @@ export default function Master() {
               cursorCharacter="|"
               textColors={["black"]}
             />
-            
           </h1>
           <p className="text-gray-800 text-xl py-4 font-bold">
             <DecryptedText
@@ -107,7 +105,7 @@ export default function Master() {
             </div>
             <p className="text-gray-600 mb-4">Public learn</p>
             <div className="flex justify-between items-center text-sm text-gray-500">
-              <span>📚 total article {masterData.articleCount}</span>
+              <span>total article {masterData.articleCount}</span>
               <button className="px-4 py-2 bg-amber-50 text-amber-600 rounded-lg hover:bg-amber-100 transition-colors">
                 <Link to={"/articles"}>any article →</Link>
               </button>
@@ -146,7 +144,7 @@ export default function Master() {
               />
             </div>
             <div className="flex justify-between items-center text-sm text-gray-500">
-              <span>🚀 total project {masterData.projectCount}</span>
+              <span>total project {masterData.projectCount}</span>
               <button className="px-4 py-2 bg-purple-50 text-purple-600 rounded-lg hover:bg-purple-100 transition-colors">
                 <Link to={"/projects"}>explore →</Link>
               </button>
@@ -176,8 +174,8 @@ export default function Master() {
               </h2>
             </div>
             <div className="grid grid-cols-3 gap-4 text-center mb-4">
-              <div className="p-4 bg-gray-50 rounded-xl hover:bg-white transition-colors">
-                <div className="text-2xl font-bold text-amber-600">
+              <div className="p-4 bg-gray-50 rounded-xl hover:bg-white transition-colors flex flex-col items-center">
+                <div className="text-2xl font-bold text-amber-600 text-center">
                   {masterData.readCount}
                 </div>
                 <div className="text-sm text-gray-500">read</div>
@@ -210,31 +208,33 @@ export default function Master() {
 
           <div className="space-y-6 lg:flex flex-wrap justify-around">
             {friendList.map((friend: any) => (
-  <a href={friend.contact} key={friend.id}>
-    <div className="group p-6 m-2 transition-all duration-300">
-      <div className="flex items-start gap-4"> 
-        <img
-          src={friend.img}
-          className="w-15 h-15 rounded-full flex-shrink-0"
-          alt={friend.name}
-        />
-        <div className="flex-1 min-w-0"> 
-          <h3 className="text-lg font-medium text-gray-800 group-hover:text-amber-600 transition-colors truncate">
-            {friend.name}
-          </h3>
-          <p className="text-gray-600 mt-2 truncate">{friend.title}</p>
-          <p className="text-gray-600 mt-2 line-clamp-2"> 
-            {friend.descript}
-          </p>
-          <div className="flex items-center mt-4 space-x-4 text-sm text-gray-500">
-            <span>{friend.contact_type}:</span>
-            <span className="truncate">{friend.contact}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </a>
-))}
+              <a href={friend.contact} key={friend.id}>
+                <div className="group p-6 m-2 transition-all duration-300">
+                  <div className="flex items-start gap-4">
+                    <img
+                      src={friend.img}
+                      className="w-15 h-15 rounded-full flex-shrink-0"
+                      alt={friend.name}
+                    />
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg font-medium text-gray-800 group-hover:text-amber-600 transition-colors truncate">
+                        {friend.name}
+                      </h3>
+                      <p className="text-gray-600 mt-2 truncate">
+                        {friend.title}
+                      </p>
+                      <p className="text-gray-600 mt-2 line-clamp-2">
+                        {friend.descript}
+                      </p>
+                      <div className="flex items-center mt-4 space-x-4 text-sm text-gray-500">
+                        <span>{friend.contact_type}:</span>
+                        <span className="truncate">{friend.contact}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            ))}
           </div>
         </section>
       </main>

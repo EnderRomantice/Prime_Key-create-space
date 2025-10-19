@@ -4,14 +4,14 @@ import resMethod from "../tools/resMethod";
 import { motion } from "framer-motion";
 
 export default function Articles() {
-    interface artItem {
-        id: number;
-        title: string;
-        excerpt: string;
-        tag: string;
-        date: string;
-        views: string;
-    }
+  interface artItem {
+    id: number;
+    title: string;
+    excerpt: string;
+    tag: string;
+    date: string;
+    views: string;
+  }
   const resArts = async () => {
     return await resMethod("/articles/list", "GET");
   };
@@ -73,7 +73,22 @@ export default function Articles() {
                     <span className="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">
                       {art.tag}
                     </span>
-                    <span className="text-gray-500 text-sm">📅 {art.date}</span>
+                    <span className="text-gray-500 text-sm flex items-center">
+                      <svg
+                        className="w-5 h-5 mr-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                      </svg>
+                      <span className="pt-1">{art.date}</span>
+                    </span>
                   </div>
 
                   <div className="flex-grow">
@@ -87,7 +102,7 @@ export default function Articles() {
 
                   <div className="flex justify-between items-center mt-auto pt-4  border-gray-100">
                     <div className="flex items-center space-x-4 text-sm text-gray-500">
-                      <span>👀 {art.views}</span>
+                      <span>watch: {art.views}</span>
                     </div>
                   </div>
                 </Link>

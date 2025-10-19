@@ -1,11 +1,10 @@
 export default async function resMethod(
   url: string,
   method: string,
-  params?: object
+  params?: object,
 ): Promise<any> {
-
-  // const api = "http://127.0.0.1:8500";
-  const api = "/api"
+  const api = "http://127.0.0.1:8500";
+  // const api = "/api"
 
   const config: RequestInit = {
     method: method,
@@ -14,10 +13,12 @@ export default async function resMethod(
     },
   };
 
-  if (params && ["POST", "PUT", "PATCH", "DELETE"].includes(method.toUpperCase())) {
+  if (
+    params &&
+    ["POST", "PUT", "PATCH", "DELETE"].includes(method.toUpperCase())
+  ) {
     config.body = JSON.stringify(params);
   }
-
 
   try {
     const response = await fetch(api + url, config);

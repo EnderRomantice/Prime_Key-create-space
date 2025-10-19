@@ -49,62 +49,61 @@ export default function Life() {
 
         {/* 卡片网格 */}
 
-        {data === undefined ? <p className="text-center py-8 text-gray-500 col-span-3">暂无动态</p>
-        :
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {data.map((life: LifeItem, index: number) => (
-            <motion.article
-              key={life.id}
-              className="group bg-white/90 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-200/80 hover:border-amber-200 transition-all duration-300 hover:shadow-xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.15 }}
-            >
-              {/* 图片容器 */}
-              <div className="relative aspect-video overflow-hidden">
-                <img
-                  src={life.url}
-                  alt={life.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-sm shadow-sm">
-                  <span className="text-amber-600">{life.tag}</span>
+        {data === undefined ? (
+          <p className="text-center py-8 text-gray-500 col-span-3">暂无动态</p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {data.map((life: LifeItem, index: number) => (
+              <motion.article
+                key={life.id}
+                className="group bg-white/90 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-200/80 hover:border-amber-200 transition-all duration-300 hover:shadow-xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.15 }}
+              >
+                {/* 图片容器 */}
+                <div className="relative aspect-video overflow-hidden">
+                  <img
+                    src={life.url}
+                    alt={life.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-sm shadow-sm">
+                    <span className="text-amber-600">{life.tag}</span>
+                  </div>
                 </div>
-              </div>
 
-              {/* 内容区域 */}
-              <div className="p-6">
-                <h2 className="text-xl font-semibold text-gray-800 group-hover:text-amber-600 transition-colors mb-3">
-                  {life.title}
-                </h2>
-                <p className="text-gray-600 mb-4 line-clamp-2">
-                  {life.excerpt}
-                </p>
-                <div className="flex items-center text-sm text-gray-500">
-                  <span className="flex items-center">
-                    <svg
-                      className="w-4 h-4 mr-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      />
-                    </svg>
-                    {life.date}
-                  </span>
+                {/* 内容区域 */}
+                <div className="p-6">
+                  <h2 className="text-xl font-semibold text-gray-800 group-hover:text-amber-600 transition-colors mb-3">
+                    {life.title}
+                  </h2>
+                  <p className="text-gray-600 mb-4 line-clamp-2">
+                    {life.excerpt}
+                  </p>
+                  <div className="flex items-center text-sm text-gray-500">
+                    <span className="flex items-center">
+                      <svg
+                        className="w-5 h-5 mr-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                      </svg>
+                      <span className="text-center pt-1">{life.date}</span>
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </motion.article>
-          ))}
-        </div>
-    }
-
+              </motion.article>
+            ))}
+          </div>
+        )}
       </main>
     </div>
   );
