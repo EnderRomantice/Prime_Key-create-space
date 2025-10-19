@@ -70,7 +70,7 @@ export default function Articles() {
                   className="flex flex-col h-full"
                 >
                   <div className="flex items-center justify-between mb-4">
-                    <span className="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">
+                    <span className="text-gray-500 px-3 py-1 rounded-full text-sm">
                       {art.tag}
                     </span>
                     <span className="text-gray-500 text-sm flex items-center">
@@ -100,11 +100,7 @@ export default function Articles() {
                     </p>
                   </div>
 
-                  <div className="flex justify-between items-center mt-auto pt-4  border-gray-100">
-                    <div className="flex items-center space-x-4 text-sm text-gray-500">
-                      <span>watch: {art.views}</span>
-                    </div>
-                  </div>
+                  <div className="flex justify-between items-center mt-auto pt-4  border-gray-100"></div>
                 </Link>
               </motion.article>
             ))
